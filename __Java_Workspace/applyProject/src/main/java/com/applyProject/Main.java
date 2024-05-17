@@ -220,10 +220,15 @@ public class Main {
 		////////////////////////////////////////////////
 		
 		
-		//E1B08 Policy
-		//DelphiScore Policy
+		// E1B08 Policy
+		// DelphiScore Policy
+		// Scorecard Decline
+		
+		
 		//Existing Customer (Northwind) Policy
 		
+		
+		//Accept
 		
 		////////////////////////////////////////////////
 		// Shutdown
