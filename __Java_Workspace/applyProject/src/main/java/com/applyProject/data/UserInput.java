@@ -97,6 +97,17 @@ public final class UserInput {
 
 		//get the enum for the entered value (use a Switch Case)
 		while (appl.getResidentialStatus() == null) {
+			
+			
+			//Fail safe for possible Infinite Loop if logic errors OR repeated bad user input
+			loopCount++;
+			if (loopCount > 3) {
+				System.out.printf("ERROR: Max Loop Count hit (count = %d)\n",loopCount);
+				System.out.println("Terminating program");
+				
+				System.exit(1);
+//				break;
+			}
 		
 			try {
 				Integer residentialStatusOption = getIntInput("Please enter an option from the above: ");
@@ -131,11 +142,6 @@ public final class UserInput {
 				e.getMessage();
 			}
 			
-			loopCount++;
-			if (loopCount >= 50) {
-				System.out.printf("ERROR: Max Loop Count hit (count = %d)\n",loopCount);
-				break;
-			}
 			
 		}
 		
@@ -163,6 +169,17 @@ public final class UserInput {
 		
 //		employmentStatusLoop:
 		while (appl.getEmploymentStatus() == null) {
+			
+			//Fail safe for possible Infinite Loop if logic errors OR repeated bad user input
+			loopCount++;
+			if (loopCount > 3) {
+				System.out.printf("ERROR: Max Loop Count hit (count = %d)\n",loopCount);
+				System.out.println("Terminating program");
+				
+				System.exit(1);
+//				break;
+			}
+			
 			
 			try {
 				Integer employmentStatusOption = getIntInput("Please enter an option from the above: ");
@@ -198,11 +215,6 @@ public final class UserInput {
 				e.getMessage();
 			}
 			
-			loopCount++;
-			if (loopCount >= 50) {
-				System.out.printf("ERROR: Max Loop Count hit (count = %d)\n",loopCount);
-				break;
-			}
 			
 		}
 		
