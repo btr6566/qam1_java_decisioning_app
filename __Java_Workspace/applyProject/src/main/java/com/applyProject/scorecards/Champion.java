@@ -7,7 +7,7 @@ package com.applyProject.scorecards;
 public class Champion {
 
 	//E1B07
-	public static Integer champion_E1B07_score(String E1B07) {
+	public static Integer e1b07_score(String E1B07) {
 		
 		Integer score = null;
 		
@@ -51,7 +51,7 @@ public class Champion {
 	}
 	
 	//E1B09
-	public static Integer champion_E1B09_score(Integer E1B09) {
+	public static Integer e1b09_score(Integer E1B09) {
 		
 		Integer score = null;
 		
@@ -78,7 +78,7 @@ public class Champion {
 	
 	
 	//TRD-A-13
-	public static Integer champion_TRDA13_score(Integer TRDA13) {
+	public static Integer trda13_score(Integer TRDA13) {
 
 		Integer score = null;
 
@@ -106,7 +106,7 @@ public class Champion {
 	}
 
 	//E1A09
-	public static Integer champion_E1A09_score(Integer E1A09) {
+	public static Integer e1a09_score(Integer E1A09) {
 		
 		Integer score = null;
 		
@@ -130,24 +130,24 @@ public class Champion {
 	}
 
 	//TRD-STL-14
-	public static Integer champion_TRDSTL14_score(Integer TRDA13) {
+	public static Integer trdstl14_score(Integer TRDSTL14) {
 
 		Integer score = null;
 
 		try {
-			if (TRDA13 == -2) {
+			if (TRDSTL14 == -2) {
 				score = 26;
-			} else if (TRDA13 == -1) {
+			} else if (TRDSTL14 == -1) {
 				score = 0;
-			} else if (TRDA13 == 0) {
+			} else if (TRDSTL14 == 0) {
 				score = 26;
-			} else if (TRDA13 >= 1 && TRDA13 <= 6) {
+			} else if (TRDSTL14 >= 1 && TRDSTL14 <= 6) {
 				score = -24;
-			} else if (TRDA13 >= 7 && TRDA13 <= 18) {
+			} else if (TRDSTL14 >= 7 && TRDSTL14 <= 18) {
 				score = -15;
-			} else if (TRDA13 >= 19 && TRDA13 <= 36) {
+			} else if (TRDSTL14 >= 19 && TRDSTL14 <= 36) {
 				score = 6;
-			} else if (TRDA13 > 36) {
+			} else if (TRDSTL14 > 36) {
 				score = 15;
 			} else {
 				score = -24;
@@ -200,7 +200,7 @@ public class Champion {
 //	}
 	
 	//Need a string version to be compatible with StringCharacteristic
-	public static Integer champion_ResidentialStatus_score(String rStatus) {
+	public static Integer residentialStatus_score(String rStatus) {
 		
 		Integer score = null;
 		

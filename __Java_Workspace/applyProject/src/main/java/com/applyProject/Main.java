@@ -1,5 +1,7 @@
 package com.applyProject;
 
+import java.util.Random;
+
 import com.applyProject.data.AzureJDBC;
 import com.applyProject.data.UserInput;
 import com.applyProject.programData.Applicant;
@@ -107,10 +109,18 @@ public class Main {
 		////////////////////////////////////////////////
 		// Retrieve External Data for Decisioning
 		////////////////////////////////////////////////
+	
+		//https://stackoverflow.com/questions/5271598/java-generate-random-number-between-two-given-values
+		
+		//So don't have to build a match logic (which isn't a beginner job), use a random number for external data
+		Random r = new Random();
+		int low = 1;
+		int high = 100;
+		int randomid = r.nextInt(high-low) + low;
+		System.out.printf("RandomId = %d\n",randomid);
 		
 		
-		//Test with static value
-		DecisioningDataRow decData = db.getDecisionData(1);
+		DecisioningDataRow decData = db.getDecisionData(randomid);
 		
 		
 		////////////////////////////////////////////////
@@ -140,7 +150,7 @@ public class Main {
 					"E1B07",
 					decData.getE1B07()
 					,championSc
-					,Champion.champion_E1B07_score(decData.getE1B07())
+					,Champion.e1b07_score(decData.getE1B07())
 					);
 //		championE1B07.setBandingScore(Champion.champion_E1B07_score(championE1B07.getCharacteristicValue()));
 		
@@ -149,7 +159,7 @@ public class Main {
 				"E1B09",
 				decData.getE1B09()
 				,championSc
-				,Champion.champion_E1B09_score(decData.getE1B09())
+				,Champion.e1b09_score(decData.getE1B09())
 				);
 //		championE1B09.setBandingScore(Champion.champion_E1B09_score(championE1B09.getCharacteristicValue()));
 		
@@ -158,7 +168,7 @@ public class Main {
 				"TRD-A-13"
 				,decData.getTRD_A_13()
 				,championSc
-				,Champion.champion_TRDA13_score(decData.getTRD_A_13())
+				,Champion.trda13_score(decData.getTRD_A_13())
 				);
 //		championTRDA13.setBandingScore(Champion.champion_TRDA13_score(championTRDA13.getCharacteristicValue()));
 		
@@ -167,7 +177,7 @@ public class Main {
 				"E1A09"
 				,decData.getE1A09()
 				,championSc
-				,Champion.champion_E1A09_score(decData.getE1A09())
+				,Champion.e1a09_score(decData.getE1A09())
 				);
 //		championE1A09.setBandingScore(Champion.champion_E1A09_score(championE1A09.getCharacteristicValue()));
 		
@@ -175,7 +185,7 @@ public class Main {
 				"TRDSTL14"
 				,decData.getTRD_STL_14()
 				,championSc
-				,Champion.champion_E1A09_score(decData.getTRD_STL_14())
+				,Champion.e1a09_score(decData.getTRD_STL_14())
 				);
 //		championTRDSTL14.setBandingScore(Champion.champion_E1A09_score(championTRDSTL14.getCharacteristicValue()));
 		
@@ -185,7 +195,7 @@ public class Main {
 				"ResidentialStatus",
 				appl1.getResidentialStatus().toString()
 				,championSc
-				,Champion.champion_ResidentialStatus_score(appl1.getResidentialStatus().toString())
+				,Champion.residentialStatus_score(appl1.getResidentialStatus().toString())
 				);
 //		championResStatus.setBandingScore(Champion.champion_ResidentialStatus_score(championResStatus.getCharacteristicValue()));
 		
@@ -203,7 +213,7 @@ public class Main {
 				"NDSPCII"
 				,decData.getNDSPCII()
 				,challangerSc
-				,Challanger.challanger_NDSPCII_score(decData.getNDSPCII())
+				,Challanger.ndspcii_score(decData.getNDSPCII())
 				);
 //		challangerNDSPCII.setBandingScore(Challanger.challanger_NDSPCII_score(challangerNDSPCII.getCharacteristicValue()));
 		
@@ -212,7 +222,7 @@ public class Main {
 				"TRD-A-06"
 				,decData.getTRD_A_06()
 				,challangerSc
-				,Challanger.challanger_TRD_A_06_score(decData.getTRD_A_06())
+				,Challanger.trda06_score(decData.getTRD_A_06())
 				);
 //		challangerTRDA06.setBandingScore(Challanger.challanger_TRD_A_06_score(challangerTRDA06.getCharacteristicValue()));
 		
@@ -220,7 +230,7 @@ public class Main {
 				"E1B13"
 				,decData.getE1B13()
 				,challangerSc
-				,Challanger.challanger_E1B13_score(decData.getE1B13())
+				,Challanger.e1b13_score(decData.getE1B13())
 				);
 //		challangerE1B13.setBandingScore(Challanger.challanger_E1B13_score(challangerE1B13.getCharacteristicValue()));
 		
@@ -229,21 +239,21 @@ public class Main {
 				"E1B01"
 				,decData.getE1B01()
 				,challangerSc
-				,Challanger.challanger_E1B01_score(decData.getE1B01())
+				,Challanger.e1b01_score(decData.getE1B01())
 				);
 		
 		NumericCharacteristic challangerTRDSTL19 = new NumericCharacteristic(
 				"TRD-STL-19"
 				,decData.getTRD_STL_19()
 				,challangerSc
-				,Challanger.challanger_TRD_STL_19_score(decData.getTRD_STL_19())
+				,Challanger.trdstl19_score(decData.getTRD_STL_19())
 				);
 		
 		StringCharacteristic challangerEmploymentStatus = new StringCharacteristic(
 				"EmploymentStatus"
 				,appl1.getEmploymentStatus().toString()
 				,challangerSc
-				,Challanger.challanger_EmploymentStatus_score(appl1.getEmploymentStatus().toString())
+				,Challanger.employmentStatus_score(appl1.getEmploymentStatus().toString())
 				);
 		
 		challangerSc.calculateProbofDefault();

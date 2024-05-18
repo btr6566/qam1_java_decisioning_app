@@ -4,7 +4,7 @@ import com.applyProject.data.EmploymentStatus;
 
 public class Challanger {
 
-	public static Integer challanger_NDSPCII_score(Integer NDSPCII) {
+	public static Integer ndspcii_score(Integer NDSPCII) {
 
 		Integer score = null;
 
@@ -34,7 +34,7 @@ public class Challanger {
 
 	}
 
-	public static Integer challanger_TRD_A_06_score(Integer TRD_A_06) {
+	public static Integer trda06_score(Integer TRD_A_06) {
 
 		Integer score = null;
 
@@ -62,7 +62,7 @@ public class Challanger {
 
 	}
 
-	public static Integer challanger_E1B13_score(Integer E1B13) {
+	public static Integer e1b13_score(Integer E1B13) {
 
 		Integer score = null;
 
@@ -86,7 +86,7 @@ public class Challanger {
 
 	}
 
-	public static Integer challanger_E1B01_score(Integer E1B01) {
+	public static Integer e1b01_score(Integer E1B01) {
 
 		Integer score = null;
 
@@ -113,7 +113,7 @@ public class Challanger {
 	}
 	
 	
-	public static Integer challanger_TRD_STL_19_score(Integer TRD_STL_19) {
+	public static Integer trdstl19_score(Integer TRD_STL_19) {
 
 		Integer score = null;
 
@@ -140,7 +140,7 @@ public class Challanger {
 	}
 	
 	
-	public static Integer challanger_EmploymentStatus_score(EmploymentStatus status) {
+	public static Integer employmentStatus_score(EmploymentStatus status) {
 
 		Integer score = null;
 
@@ -177,7 +177,7 @@ public class Challanger {
 
 	}
 	
-	public static Integer challanger_EmploymentStatus_score(String status) {
+	public static Integer employmentStatus_score(String status) {
 
 		Integer score = null;
 

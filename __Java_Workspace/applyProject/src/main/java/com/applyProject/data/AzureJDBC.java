@@ -218,6 +218,76 @@ public class AzureJDBC {
 		return null;
 		
 	}
+	
+	
+	public Integer getMinDecisionDataId() {
+		
+		String query = "SELECT min(__PK) AS __MIN FROM [Delphi].[VW_DelphiSummaryData]";
+		
+		Connection conn = null;
+		Integer vResult = null;
+		
+		try {
+			conn = DriverManager.getConnection(this.jdbcConnectionURL);
+			
+			Statement statement = conn.createStatement();
+			ResultSet resultSet = statement.executeQuery(query);
+			
+			vResult = resultSet.getInt("__MIN");
+			
+		} catch (SQLException e) {
+			
+			System.out.println(e.getMessage());
+			
+		} finally {
+			try {
+				if (conn != null) { // so will ALWAYS close
+					conn.close();
+				}
+			} catch (SQLException se) {
+				se.getMessage();
+				se.printStackTrace();
+			}
+		}
+		
+		
+		return vResult;
+	}
+	
+	public Integer getMaxDecisionDataId() {
+		
+		String query = "SELECT max(__PK) AS __max FROM [Delphi].[VW_DelphiSummaryData]";
+		
+		Connection conn = null;
+		Integer vResult = null;
+		
+		try {
+			conn = DriverManager.getConnection(this.jdbcConnectionURL);
+			
+			Statement statement = conn.createStatement();
+			ResultSet resultSet = statement.executeQuery(query);
+			
+			vResult = resultSet.getInt("__max");
+			
+		} catch (SQLException e) {
+			
+			System.out.println(e.getMessage());
+			
+		} finally {
+			try {
+				if (conn != null) { // so will ALWAYS close
+					conn.close();
+				}
+			} catch (SQLException se) {
+				se.getMessage();
+				se.printStackTrace();
+			}
+		}
+		
+		
+		return vResult;
+	}
+	
 
 	////////////////////////
 	// CRUD TEST
