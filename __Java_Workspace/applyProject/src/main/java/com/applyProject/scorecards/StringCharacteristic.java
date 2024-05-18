@@ -23,24 +23,29 @@ public class StringCharacteristic extends BaseCharacteristic {
 		
 	}
 	
-	public StringCharacteristic(String name, Integer bandingScore) {
-		super(name, bandingScore);
-	}
-	
 	
 	//Use these to auto add to the Scorecard
-	public StringCharacteristic(String name, String characteristicValue, Scorecard scorecard) {
+//	public StringCharacteristic(String name, String characteristicValue, Scorecard scorecard) {
+//		super(name);
+//		this.characteristicValue = characteristicValue;
+//		scorecard.addCharacteristic(this);
+//		
+//	}
+	
+
+	public StringCharacteristic(String name, String characteristicValue, Scorecard scorecard, Integer bandingScore) {
 		super(name);
 		this.characteristicValue = characteristicValue;
+		
+		//Add to the Array of Characteristics in the scorecard, to keep them related 
 		scorecard.addCharacteristic(this);
+		
+		//Add the Banding Score to the current score of the Scorecard
+		scorecard.addBandingScoretoScore(bandingScore);
 		
 	}
 	
-	public StringCharacteristic(String name, Integer bandingScore, Scorecard scorecard) {
-		super(name, bandingScore);
-		scorecard.addCharacteristic(this);
-		
-	}
+
 
 	////////////////
 	// Getter & Setters

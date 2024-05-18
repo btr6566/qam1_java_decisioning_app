@@ -67,13 +67,13 @@ class ChallangerTest {
 	}
 
 	@Test
-	public void testChallanger_EmploymentStatus_score() {
+	public void testChallanger_EmploymentStatus_score_enum() {
 		assertEquals(45, Challanger.challanger_EmploymentStatus_score(EmploymentStatus.FullTime));
 		assertEquals(24, Challanger.challanger_EmploymentStatus_score(EmploymentStatus.PartTime));
 		assertEquals(6, Challanger.challanger_EmploymentStatus_score(EmploymentStatus.Student));
 		assertEquals(33, Challanger.challanger_EmploymentStatus_score(EmploymentStatus.SelfEmployed));
 		assertEquals(-10, Challanger.challanger_EmploymentStatus_score(EmploymentStatus.Unemployed));
 		assertEquals(22, Challanger.challanger_EmploymentStatus_score(EmploymentStatus.Retired));
-		assertEquals(-10, Challanger.challanger_EmploymentStatus_score(null));
+//		assertEquals(-10, Challanger.challanger_EmploymentStatus_score(null));
 	}
 }

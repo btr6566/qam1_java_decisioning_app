@@ -1,6 +1,6 @@
 package com.applyProject.scorecards;
 
-import com.applyProject.data.ResidentialStatus;
+//import com.applyProject.data.ResidentialStatus;
 
 
 //Use some Static Methods, as Scores assigned will be unique to a Scorecard
@@ -161,43 +161,43 @@ public class Champion {
 	
 	
 	//ResidentialStatus (scorecard)
-	public static Integer champion_ResidentialStatus_score(ResidentialStatus rStatus) {
-		
-		Integer score = null;
-		
-		String rStatusstring = rStatus.toString();
-		
-		try {
-			switch (rStatusstring) {
-			case "HomeOwner":
-				score = 40;
-				break;
-			case "PrivateTenantFurnished":
-				score = 26;
-				break;
-			case "PrivateTenantUnfurnished":
-				score = 34;
-				break;
-			case "CouncilTenant":
-				score = 10;
-				break;
-			case "Cohabiting":
-				score = 34;
-				break;
-			case "LivingWithParents":
-				score = 10;
-				break;
-			default:
-				score = 10;
-				break;
-			}
-		} catch (NullPointerException e) {
-			score = 10;
-		}
-		
-		return score;
-
-	}
+//	public static Integer champion_ResidentialStatus_score(ResidentialStatus rStatus) {
+//		
+//		Integer score = null;
+//		
+//		String rStatusstring = rStatus.toString();
+//		
+//		try {
+//			switch (rStatusstring) {
+//			case "HomeOwner":
+//				score = 40;
+//				break;
+//			case "PrivateTenantFurnished":
+//				score = 26;
+//				break;
+//			case "PrivateTenantUnfurnished":
+//				score = 34;
+//				break;
+//			case "CouncilTenant":
+//				score = 10;
+//				break;
+//			case "Cohabiting":
+//				score = 34;
+//				break;
+//			case "LivingWithParents":
+//				score = 10;
+//				break;
+//			default:
+//				score = 10;
+//				break;
+//			}
+//		} catch (NullPointerException e) {
+//			score = 10;
+//		}
+//		
+//		return score;
+//
+//	}
 	
 	//Need a string version to be compatible with StringCharacteristic
 	public static Integer champion_ResidentialStatus_score(String rStatus) {

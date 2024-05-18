@@ -16,7 +16,7 @@ class CharacteristicTest {
 	@DisplayName("String Characteristic - Name set correctly")
 	void scorecardName() {
 		
-//		Scorecard sc1 = new Scorecard("jUnit_Test");
+//		Scorecard sc1 = new Scorecard("jUnit_Test",500);
 		
 		StringCharacteristic c1 = new StringCharacteristic("Test Characteristic");
 		

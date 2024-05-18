@@ -31,23 +31,22 @@ public class Scorecard {
 	
 	// You can and they are useful for enforcing required values
 	// I want to always have a Scorecard Name, so apply here
-	public Scorecard(String scorecardName) {
-		super();
-		this.scorecardName = scorecardName;
-		
-		//Need to Initalise Array to avoid a Runtime Error
-		this.stringCharacteristics = new ArrayList<>();
-		this.numberCharacteristics = new ArrayList<>();
-	}
+//	public Scorecard(String scorecardName) {
+//		super();
+//		this.scorecardName = scorecardName;
+//		
+//		//Need to Initalise Array to avoid a Runtime Error
+//		this.stringCharacteristics = new ArrayList<>();
+//		this.numberCharacteristics = new ArrayList<>();
+//	}
 
 	
 	
 
-	public Scorecard(String scorecardName, int score, int index) {
+	public Scorecard(String scorecardName, int score) {
 		super();
 		this.scorecardName = scorecardName;
 		this.score = score;
-		this.index = index;
 		
 		//Need to Initalise Array to avoid a Runtime Error
 		this.stringCharacteristics = new ArrayList<>();
@@ -75,7 +74,8 @@ public class Scorecard {
 	}
 
 
-	public void setScore(int score) {
+	@SuppressWarnings("unused")
+	private void setScore(int score) {
 		this.score = score;
 	}
 
@@ -115,7 +115,6 @@ public class Scorecard {
 
 
 
-
 	//////////////////
 	// Other Methods
 	/////////////////
@@ -130,6 +129,12 @@ public class Scorecard {
 		
 		//Expectation is can use 1 method, as String & Numeric extend this Base class
 		numberCharacteristics.add(characteristic);
+		
+	}
+	
+	public void addBandingScoretoScore(Integer bandingScore) {
+		
+		this.score += bandingScore;
 		
 	}
 	

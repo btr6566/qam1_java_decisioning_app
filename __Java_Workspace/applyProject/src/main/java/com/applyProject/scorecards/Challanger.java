@@ -176,5 +176,42 @@ public class Challanger {
 		return score;
 
 	}
+	
+	public static Integer challanger_EmploymentStatus_score(String status) {
+
+		Integer score = null;
+
+
+		try {
+			switch (status) {
+			case "FullTime":
+				score = 45;
+				break;
+			case "PartTime":
+				score = 24;
+				break;
+			case "Student":
+				score = 6;
+				break;
+			case "SelfEmployed":
+				score = 33;
+				break;
+			case "Unemployed":
+				score = -10;
+				break;
+			case "Retired":
+				score = 22;
+				break;
+			default:
+				score = -10;
+				break;
+			}
+		} catch (NullPointerException e) {
+			score = -10;
+		}
+		
+		return score;
+
+	}
 
 }

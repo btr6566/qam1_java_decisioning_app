@@ -22,6 +22,7 @@ public class Main {
 	////////////////////////////////////////////////
 	// MAIN
 	////////////////////////////////////////////////
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 
 		////////////////////////////////////////////////
@@ -121,10 +122,10 @@ public class Main {
 		//-------------
 		//Calculate Champion Scorecard
 		//-------------
-		Scorecard championSc = new Scorecard("ChampionScorecard");
 		
-		//For Base Score, just use the Setter method
-		championSc.setScore(600);
+		//Use Constructor to set Base/Starting score
+		Scorecard championSc = new Scorecard("ChampionScorecard",600);
+		
 		
 		//add characteristic E1B07, Must be a cleaner way of doing this...
 //		StringCharacteristic championE1B07 = new StringCharacteristic("E1B07",decData.getE1B07());
@@ -138,39 +139,44 @@ public class Main {
 					"E1B07",
 					decData.getE1B07()
 					,championSc
+					,Champion.champion_E1B07_score(decData.getE1B07())
 					);
-		championE1B07.setBandingScore(Champion.champion_E1B07_score(championE1B07.getCharacteristicValue()));
+//		championE1B07.setBandingScore(Champion.champion_E1B07_score(championE1B07.getCharacteristicValue()));
 		
 		
 		NumericCharacteristic championE1B09 = new NumericCharacteristic(
 				"E1B09",
 				decData.getE1B09()
 				,championSc
+				,Champion.champion_E1B09_score(decData.getE1B09())
 				);
-		championE1B09.setBandingScore(Champion.champion_E1B09_score(championE1B09.getCharacteristicValue()));
+//		championE1B09.setBandingScore(Champion.champion_E1B09_score(championE1B09.getCharacteristicValue()));
 		
 		
 		NumericCharacteristic championTRDA13 = new NumericCharacteristic(
-				"TRD-A-13",
-				decData.getTRD_A_13()
+				"TRD-A-13"
+				,decData.getTRD_A_13()
 				,championSc
+				,Champion.champion_TRDA13_score(decData.getTRD_A_13())
 				);
-		championTRDA13.setBandingScore(Champion.champion_TRDA13_score(championTRDA13.getCharacteristicValue()));
+//		championTRDA13.setBandingScore(Champion.champion_TRDA13_score(championTRDA13.getCharacteristicValue()));
 		
 		
 		NumericCharacteristic championE1A09 = new NumericCharacteristic(
-				"E1A09",
-				decData.getE1A09()
+				"E1A09"
+				,decData.getE1A09()
 				,championSc
+				,Champion.champion_E1A09_score(decData.getE1A09())
 				);
-		championE1A09.setBandingScore(Champion.champion_E1A09_score(championE1A09.getCharacteristicValue()));
+//		championE1A09.setBandingScore(Champion.champion_E1A09_score(championE1A09.getCharacteristicValue()));
 		
 		NumericCharacteristic championTRDSTL14 = new NumericCharacteristic(
-				"TRDSTL14",
-				decData.getTRD_STL_14()
+				"TRDSTL14"
+				,decData.getTRD_STL_14()
 				,championSc
+				,Champion.champion_E1A09_score(decData.getTRD_STL_14())
 				);
-		championTRDSTL14.setBandingScore(Champion.champion_E1A09_score(championTRDSTL14.getCharacteristicValue()));
+//		championTRDSTL14.setBandingScore(Champion.champion_E1A09_score(championTRDSTL14.getCharacteristicValue()));
 		
 		
 		//The eNum ones require using toString to be compatible, Room for improvement
@@ -178,41 +184,64 @@ public class Main {
 				"ResidentialStatus",
 				appl1.getResidentialStatus().toString()
 				,championSc
+				,Champion.champion_ResidentialStatus_score(appl1.getResidentialStatus().toString())
 				);
-		championResStatus.setBandingScore(Champion.champion_ResidentialStatus_score(championResStatus.getCharacteristicValue()));
+//		championResStatus.setBandingScore(Champion.champion_ResidentialStatus_score(championResStatus.getCharacteristicValue()));
 		
 		
 		//-------------
 		//Calculate Challanger Scorecard
 		//-------------
-		Scorecard challangerSc = new Scorecard("ChallangerScorecard");
 		
-		//For Base Score, just use the Setter method
-		challangerSc.setScore(580);
-		
+		//Use Constructor to set Base/Starting score
+		Scorecard challangerSc = new Scorecard("ChallangerScorecard",580);		
 		
 		NumericCharacteristic challangerNDSPCII = new NumericCharacteristic(
-				"NDSPCII",
-				decData.getNDSPCII()
+				"NDSPCII"
+				,decData.getNDSPCII()
 				,challangerSc
+				,Challanger.challanger_NDSPCII_score(decData.getNDSPCII())
 				);
-		challangerNDSPCII.setBandingScore(Challanger.challanger_NDSPCII_score(challangerNDSPCII.getCharacteristicValue()));
+//		challangerNDSPCII.setBandingScore(Challanger.challanger_NDSPCII_score(challangerNDSPCII.getCharacteristicValue()));
 		
 		
 		NumericCharacteristic challangerTRDA06 = new NumericCharacteristic(
-				"TRD-A-06",
-				decData.getTRD_A_06()
+				"TRD-A-06"
+				,decData.getTRD_A_06()
 				,challangerSc
+				,Challanger.challanger_TRD_A_06_score(decData.getTRD_A_06())
 				);
-		challangerTRDA06.setBandingScore(Challanger.challanger_TRD_A_06_score(challangerTRDA06.getCharacteristicValue()));
+//		challangerTRDA06.setBandingScore(Challanger.challanger_TRD_A_06_score(challangerTRDA06.getCharacteristicValue()));
 		
 		NumericCharacteristic challangerE1B13 = new NumericCharacteristic(
-				"E1B13",
-				decData.getE1B13()
+				"E1B13"
+				,decData.getE1B13()
 				,challangerSc
+				,Challanger.challanger_E1B13_score(decData.getE1B13())
 				);
-		challangerE1B13.setBandingScore(Challanger.challanger_E1B13_score(challangerE1B13.getCharacteristicValue()));
+//		challangerE1B13.setBandingScore(Challanger.challanger_E1B13_score(challangerE1B13.getCharacteristicValue()));
 		
+		
+		NumericCharacteristic challangerE1B01 = new NumericCharacteristic(
+				"E1B01"
+				,decData.getE1B01()
+				,challangerSc
+				,Challanger.challanger_E1B01_score(decData.getE1B01())
+				);
+		
+		NumericCharacteristic challangerTRDSTL19 = new NumericCharacteristic(
+				"TRD-STL-19"
+				,decData.getTRD_STL_19()
+				,challangerSc
+				,Challanger.challanger_TRD_STL_19_score(decData.getTRD_STL_19())
+				);
+		
+		StringCharacteristic challangerEmploymentStatus = new StringCharacteristic(
+				"EmploymentStatus"
+				,appl1.getEmploymentStatus().toString()
+				,championSc
+				,Challanger.challanger_EmploymentStatus_score(appl1.getEmploymentStatus().toString())
+				);
 		
 		
 		////////////////////////////////////////////////
