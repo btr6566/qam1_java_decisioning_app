@@ -26,20 +26,14 @@ class ScorecardJunit {
 	static GsonBuilder builder = new GsonBuilder(); 
 	static Gson gson = builder.create();
 	
-	//Before all method must be static
-	
-	//Use Case: Methods are suitable for operations that need to be executed as soon as for the whole take a look at class, 
-	//including setting up a database connection or initializing sources which can be shared among all test methods.
-	@BeforeAll
-	static void start() {
-		System.out.println("Running Scorecard Test");
+	public double round2dp(Double input) {
+		
+		double roundOff = Math.round(input * 100.0) / 100.0;
+		
+		return roundOff;
 	}
 	
-//	@BeforeEach
-//	static void init() {
-//
-//	}
-	
+
 	//////
 	//Demo Tests
 	/////
@@ -89,7 +83,7 @@ class ScorecardJunit {
 		
 		
 		//Stack Overflow error when trying on an Array
-		System.out.println(gson.toJson(sc1));
+//		System.out.println(gson.toJson(sc1));
 //		System.out.println(gson.toJson(sc1.getCharacteristics()));
 		
 //		String expectedGsonOut = "{\"scorecardName\":\"score_junit\",\"score\":999,\"index\":1,\"stringCharacteristics\":[{\"characteristicValue\":\"A\",\"name\":\"testChar\",\"bandingScore\":0}],\"numberCharacteristics\":[]}";
@@ -111,13 +105,42 @@ class ScorecardJunit {
 		
 		
 		//Stack Overflow error when trying on an Array
-		System.out.println(gson.toJson(sc1));
+//		System.out.println(gson.toJson(sc1));
 //		System.out.println(gson.toJson(sc1.getCharacteristics()));
 		
 //		String expectedGsonOut = "{\"scorecardName\":\"score_junit_numeric\",\"score\":999,\"index\":1,\"stringCharacteristics\":[],\"numberCharacteristics\":[{\"characteristicValue\":50.0,\"name\":\"testNumChar\",\"bandingScore\":0}]}";
 		
 		assertEquals(sc1.getNumberCharacteristics().size(),1);
 //		assertEquals(gson.toJson(sc1),expectedGsonOut);
+	}
+	
+	
+	
+	@Test
+	@Timeout(10) 
+	@DisplayName("Add Numeric Characteristic")
+	void calculateProbofDefault() {
+		
+		Scorecard sc1 = new Scorecard("Test 1 score = 530",500);
+//		Scorecard sc2 = new Scorecard("Test 1 score = 610",610);
+		
+		sc1.calculateProbofDefault(400);
+		sc1.calculateProbofDefault(450);
+		sc1.calculateProbofDefault(500);
+		sc1.calculateProbofDefault(550);
+		sc1.calculateProbofDefault(600);
+		sc1.calculateProbofDefault(650);
+		sc1.calculateProbofDefault(700);
+		sc1.calculateProbofDefault(750);
+		
+		//This is initial problem run into, so check no infinete values to start
+//		assertNotEquals(Double.POSITIVE_INFINITY, sc1.getProbOfDefault());
+//		assertNotEquals(Double.NEGATIVE_INFINITY, sc1.getProbOfDefault());
+		
+		
+		assertEquals(0.02, round2dp(sc1.getProbOfDefault()));
+//		assertEquals(0.27, round2dp(sc2.getProbOfDefault()));
+		
 	}
 
 }

@@ -1,18 +1,16 @@
 package com.applyProject;
 
-import com.google.gson.Gson; 
-import com.google.gson.GsonBuilder;  
-
 import com.applyProject.data.AzureJDBC;
 import com.applyProject.data.UserInput;
 import com.applyProject.programData.Applicant;
-
 import com.applyProject.programData.DecisioningDataRow;
-import com.applyProject.scorecards.Scorecard;
 import com.applyProject.scorecards.Challanger;
 import com.applyProject.scorecards.Champion;
-import com.applyProject.scorecards.StringCharacteristic;
 import com.applyProject.scorecards.NumericCharacteristic;
+import com.applyProject.scorecards.Scorecard;
+import com.applyProject.scorecards.StringCharacteristic;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 
 
@@ -22,6 +20,9 @@ public class Main {
 	////////////////////////////////////////////////
 	// MAIN
 	////////////////////////////////////////////////
+	
+	//This supress warnings is used because the scorecard characteristics are technically not used
+	
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 
@@ -189,6 +190,8 @@ public class Main {
 //		championResStatus.setBandingScore(Champion.champion_ResidentialStatus_score(championResStatus.getCharacteristicValue()));
 		
 		
+		championSc.calculateProbofDefault();
+		
 		//-------------
 		//Calculate Challanger Scorecard
 		//-------------
@@ -239,10 +242,11 @@ public class Main {
 		StringCharacteristic challangerEmploymentStatus = new StringCharacteristic(
 				"EmploymentStatus"
 				,appl1.getEmploymentStatus().toString()
-				,championSc
+				,challangerSc
 				,Challanger.challanger_EmploymentStatus_score(appl1.getEmploymentStatus().toString())
 				);
 		
+		challangerSc.calculateProbofDefault();
 		
 		////////////////////////////////////////////////
 		// Policy

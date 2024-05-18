@@ -1,6 +1,7 @@
 package com.applyProject.scorecards;
 
 import java.util.ArrayList;
+import java.lang.Math;
 
 public class Scorecard {
 
@@ -135,6 +136,37 @@ public class Scorecard {
 	public void addBandingScoretoScore(Integer bandingScore) {
 		
 		this.score += bandingScore;
+		
+	}
+	
+	public void calculateProbofDefault() {
+		
+//		Constants to set boundary for Bad Rates
+		int baselineScore = 600;
+		int pointsJump = 20;
+		
+//		'=1/(2^((Score-500)/50)+1)
+		double pd = 1 / (Math.exp((score-baselineScore)/pointsJump)+1);
+		
+		System.out.printf("Score = %d, Prob of Default = %f \n",this.score,pd);
+		
+		setProbOfDefault(pd);
+		
+	}
+	
+	//Use a input one for Unit testing, see if the constant look sensible
+	public void calculateProbofDefault(Integer pScore) {
+		
+//		Constants to set boundary for Bad Rates
+		int baselineScore = 550;
+		int pointsJump = 50;
+		
+//		'=1/(2^((Score-500)/50)+1)
+		double pd = 1 / (Math.exp((pScore-baselineScore)/pointsJump)+1);
+		
+		System.out.printf("Score = %d, Prob of Default = %f \n",pScore,pd);
+		
+		setProbOfDefault(pd);
 		
 	}
 	
