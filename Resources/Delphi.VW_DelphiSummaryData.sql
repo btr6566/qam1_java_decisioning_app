@@ -47,20 +47,6 @@ SELECT
 	,JSON.*
 FROM [Delphi].[ECTDB_UAT_Raw_Stg] AS sbd 
 CROSS APPLY Openjson(sbd.[JSON_Response]) WITH (
-	-- RentalExchange_RPR01									NVARCHAR(1)									N'$.Response.ConsumerSummary.Summary.RentalExchange.RPR01'
-	-- ,RentalExchange_RPR02									NVARCHAR(1)									N'$.Response.ConsumerSummary.Summary.RentalExchange.RPR02'
-	-- ,RentalExchange_RPR03									INT									N'$.Response.ConsumerSummary.Summary.RentalExchange.RPR03'
-	-- ,RentalExchange_RPR04									INT									N'$.Response.ConsumerSummary.Summary.RentalExchange.RPR04'
-	-- ,RentalExchange_RPR05									INT									N'$.Response.ConsumerSummary.Summary.RentalExchange.RPR05'
-	-- ,RentalExchange_RPR06									INT									N'$.Response.ConsumerSummary.Summary.RentalExchange.RPR06'
-	-- ,RentalExchange_RPR07									INT									N'$.Response.ConsumerSummary.Summary.RentalExchange.RPR07'
-	-- ,RentalExchange_RPR08									INT									N'$.Response.ConsumerSummary.Summary.RentalExchange.RPR08'
-	-- ,RentalExchange_RPR09									INT									N'$.Response.ConsumerSummary.Summary.RentalExchange.RPR09'
-	-- ,RentalExchange_RPR10									INT									N'$.Response.ConsumerSummary.Summary.RentalExchange.RPR10'
-	-- ,RentalExchange_RPR11									INT									N'$.Response.ConsumerSummary.Summary.RentalExchange.RPR11'
-	-- ,RentalExchange_RPR12									INT									N'$.Response.ConsumerSummary.Summary.RentalExchange.RPR12'
-	-- ,RentalExchange_RPR13									INT									N'$.Response.ConsumerSummary.Summary.RentalExchange.RPR13'
-	-- ,RentalExchange_RPR14									INT									N'$.Response.ConsumerSummary.Summary.RentalExchange.RPR14'
 	 ElectoralRoll_E4Q01									INT									N'$.Response.ConsumerSummary.Summary.ElectoralRoll.E4Q01'
 	,ElectoralRoll_E4Q02									INT									N'$.Response.ConsumerSummary.Summary.ElectoralRoll.E4Q02'
 	,ElectoralRoll_E4Q03									INT									N'$.Response.ConsumerSummary.Summary.ElectoralRoll.E4Q03'

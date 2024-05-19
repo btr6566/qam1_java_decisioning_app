@@ -24,7 +24,6 @@
 /*
 Transformations/Differences from RAW JSON block
 -------------------------------
-	*	Home Credit Block & Bespoke Block removed, these are part of the HighCostCredit Block?
 	*	'-' characters in variable names are replaced with '_' characters (complies to standard SQL)
 	*	Names are padded with what Block they are sourced from, due to variable names being reused in different blocks
 
@@ -34,22 +33,870 @@ Notes
 	* Using LAX JSON paths (the default), so if a value is NULL, the entire thing does not error (values are not necessarially expected)
 	* only valid JSON values are used, using the ISJSON function
 
-	* Any rows where ZootTransactionID = '0' will need a different MatchKey:
-			-onto Applicant Number in the Landing_Zoot.RequestApplicant table
-			- ZootDatetimestamp
-		- Only an issue for 1st 2 days Zoot went live (2020-11-15 to 2020-11-17). After the 18th, this is no longer a problem
-
 */
 
 DROP VIEW [Delphi].[VW_DelphiPremiumValueData];
 GO
 
 
-CREATE VIEW [Delphi].[VW_DelphiPremiumValueData] AS 
+CREATE VIEW [Delphi].[VW_DelphiPremiumValueData] WITH SCHEMABINDING AS 
 SELECT
 	 sbd.__PK
 	,sbd.[ID]
-	,JSON.*
+	-- ,JSON.*
+	,JSON.APACSCCBehavrlData_CCDATASUPPLIED		
+	,JSON.APACSCCBehavrlData_CLUCLIL6M			
+	,JSON.APACSCCBehavrlData_CLUCLIL6MNPRL6M		
+	,JSON.APACSCCBehavrlData_CLUNPRL1M			
+	,JSON.APACSCCBehavrlData_NOASBNPRL1M			
+	,JSON.APACSCCBehavrlData_NOCAL1M				
+	,JSON.APACSCCBehavrlData_NOCAL3M				
+	,JSON.APACSCCBehavrlData_NOCLDL3M			
+	,JSON.APACSCCBehavrlData_NOMLVCAL1M			
+	,JSON.APACSCCBehavrlData_NOMLVCAL3M			
+	,JSON.APACSCCBehavrlData_NOMPMNPRL3M			
+	,JSON.APACSCCBehavrlData_PTBRL3MNPRL3M		
+	,JSON.APACSCCBehavrlData_PTBRL6MNPRL6M		
+	,JSON.APACSCCBehavrlData_PTSBRL3MNPRL3M		
+	,JSON.APACSCCBehavrlData_PTSBRL6MNPRL6M		
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_01
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_02
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_03
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_04
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_05
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_06
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_07
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_08
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_09
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_10
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_11
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_12
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_13
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_14
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_15
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_16
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_17
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_18
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_19
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_20
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_21
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_22
+	,JSON.EstimatedDisposableIncomeRAG_TRD_RAG_23
+	,JSON.HighCostCredit_HCA01					
+	,JSON.HighCostCredit_HCA02					
+	,JSON.HighCostCredit_HCA03					
+	,JSON.HighCostCredit_HCA04					
+	,JSON.HighCostCredit_HCA05					
+	,JSON.HighCostCredit_HCA06					
+	,JSON.HighCostCredit_HCA07					
+	,JSON.HighCostCredit_HCA08					
+	,JSON.HighCostCredit_HCA09					
+	,JSON.HighCostCredit_HCA10					
+	,JSON.HighCostCredit_HCA11					
+	,JSON.HighCostCredit_HCA12					
+	,JSON.HighCostCredit_HCA13					
+	,JSON.HighCostCredit_HCA14					
+	,JSON.HighCostCredit_HCB01					
+	,JSON.HighCostCredit_HCB02					
+	,JSON.HighCostCredit_HCB03					
+	,JSON.HighCostCredit_HCB04					
+	,JSON.HighCostCredit_HCC01					
+	,JSON.HighCostCredit_HCC02					
+	,JSON.HighCostCredit_HCC03					
+	,JSON.HighCostCredit_HCC04					
+	,JSON.HighCostCredit_HCC05					
+	,JSON.HighCostCredit_HCD01					
+	,JSON.HighCostCredit_HCD02					
+	,JSON.HighCostCredit_HCE01					
+	,JSON.HighCostCredit_HCE02					
+	,JSON.HighCostCredit_HCE03					
+	,JSON.HighCostCredit_HCF01					
+	,JSON.HighCostCredit_HCF02					
+	,JSON.HighCostCredit_HCF03					
+	,JSON.HighCostCredit_HCF04					
+	,JSON.HighCostCredit_HCF05					
+	,JSON.HighCostCredit_HCF06					
+	,JSON.HighCostCredit_HCP01					
+	,JSON.HighCostCredit_HCP02					
+	,JSON.HighCostCredit_HCP03					
+	,JSON.HighCostCredit_HCP04					
+	,JSON.HighCostCredit_HCP05					
+	,JSON.HighCostCredit_HCP06					
+	,JSON.HighCostCredit_HCP07					
+	,JSON.HighCostCredit_HCP08					
+	,JSON.HighCostCredit_PDA01					
+	,JSON.HighCostCredit_PDA02					
+	,JSON.HighCostCredit_PDA03					
+	,JSON.HighCostCredit_PDA04					
+	,JSON.HighCostCredit_PDB05					
+	,JSON.HighCostCredit_PDB06					
+	,JSON.HighCostCredit_PDB07					
+	,JSON.HighCostCredit_PDB08					
+	,JSON.HighCostCredit_PDB09					
+	,JSON.HighCostCredit_PDB10					
+	,JSON.HighCostCredit_PDC11					
+	,JSON.HighCostCredit_PDC12					
+	,JSON.HighCostCredit_PDC13					
+	,JSON.HighCostCredit_PDD14					
+	,JSON.HighCostCredit_PDD15					
+	,JSON.HighCostCredit_PDD16					
+	,JSON.HighCostCredit_PDE17					
+	,JSON.HighCostCredit_PDE18					
+	,JSON.HighCostCredit_PDF19					
+	,JSON.HighCostCredit_PDF20					
+	,JSON.HighCostCredit_PDF21					
+	,JSON.HighCostCredit_PDF22					
+	,JSON.HighCostCredit_PDF23					
+	,JSON.HighCostCredit_PDF24					
+	,JSON.HighCostCredit_PDF25					
+	,JSON.HighCostCredit_PDF26					
+	,JSON.HighCostCredit_PDF27					
+	,JSON.HighCostCredit_PDF28					
+	,JSON.HighCostCredit_TRD_STL_01				
+	,JSON.HighCostCredit_TRD_STL_02				
+	,JSON.HighCostCredit_TRD_STL_03				
+	,JSON.HighCostCredit_TRD_STL_04				
+	,JSON.HighCostCredit_TRD_STL_05				
+	,JSON.HighCostCredit_TRD_STL_06				
+	,JSON.HighCostCredit_TRD_STL_07				
+	,JSON.HighCostCredit_TRD_STL_08				
+	,JSON.HighCostCredit_TRD_STL_09				
+	,JSON.HighCostCredit_TRD_STL_10				
+	,JSON.HighCostCredit_TRD_STL_11				
+	,JSON.HighCostCredit_TRD_STL_12				
+	,JSON.HighCostCredit_TRD_STL_13				
+	,JSON.HighCostCredit_TRD_STL_14				
+	,JSON.HighCostCredit_TRD_STL_15				
+	,JSON.HighCostCredit_TRD_STL_16				
+	,JSON.HighCostCredit_TRD_STL_17				
+	,JSON.HighCostCredit_TRD_STL_18				
+	,JSON.HighCostCredit_TRD_STL_19				
+	,JSON.HighCostCredit_TRD_STL_20				
+	,JSON.HighCostCredit_TRD_STL_21				
+	,JSON.HighCostCredit_TRD_STL_22				
+	,JSON.HighCostCredit_TRD_STL_23				
+	,JSON.NeverPaidDefsBlock_SPABALEBADS			
+	,JSON.NeverPaidDefsBlock_SPABALEBADSL12		
+	,JSON.NeverPaidDefsBlock_SPABALNPD			
+	,JSON.NeverPaidDefsBlock_SPABALNPDL12		
+	,JSON.NeverPaidDefsBlock_SPAMTHFSTEBAD		
+	,JSON.NeverPaidDefsBlock_SPANOEBADS			
+	,JSON.NeverPaidDefsBlock_SPANOEBADSL12		
+	,JSON.NeverPaidDefsBlock_SPANONPD			
+	,JSON.NeverPaidDefsBlock_SPANONPDL12			
+	,JSON.NeverPaidDefsBlock_SPATSMREBAD			
+	,JSON.NeverPaidDefsBlock_SPATSMRNPD			
+	,JSON.NeverPaidDefsBlock_SPBALEBADS			
+	,JSON.NeverPaidDefsBlock_SPBALEBADSL12		
+	,JSON.NeverPaidDefsBlock_SPBALNPD			
+	,JSON.NeverPaidDefsBlock_SPBALNPDL12			
+	,JSON.NeverPaidDefsBlock_SPMTHFSTEBAD		
+	,JSON.NeverPaidDefsBlock_SPNOEBADS			
+	,JSON.NeverPaidDefsBlock_SPNOEBADSL12		
+	,JSON.NeverPaidDefsBlock_SPNONPD				
+	,JSON.NeverPaidDefsBlock_SPNONPDL12			
+	,JSON.NeverPaidDefsBlock_SPTSMREBAD			
+	,JSON.NeverPaidDefsBlock_SPTSMRNPD			
+	,JSON.TelecommsBlock_SPBALACTTEL				
+	,JSON.TelecommsBlock_SPNOACTTEL				
+	,JSON.TelecommsBlock_SPNODEL					
+	,JSON.TelecommsBlock_SPNOINACTTEL36			
+	,JSON.TelecommsBlock_SPNOINACTTELL12			
+	,JSON.TelecommsBlock_SPNOINACTTELL24			
+	,JSON.TelecommsBlock_SPTOTNOACTTEL			
+	,JSON.TelecommsBlock_SPTOTNOSET				
+	,JSON.TelecommsBlock_SPTOTNOSETL12			
+	,JSON.TelecommsBlock_SPTOTNOSETL24			
+	,JSON.TelecommsBlock_SPTOTNOSETL36			
+	,JSON.TelecommsBlock_SPTSMRSETTEL			
+	,JSON.TelecommsBlock_SPTSMRTEL				
+	,JSON.TelecommsBlock_SPTSMRTELDEL			
+	,JSON.TelecommsBlock_SPVALDEL				
+	,JSON.TrendedData_TRD_A_01					
+	,JSON.TrendedData_TRD_A_02					
+	,JSON.TrendedData_TRD_A_03					
+	,JSON.TrendedData_TRD_A_04					
+	,JSON.TrendedData_TRD_A_05					
+	,JSON.TrendedData_TRD_A_06					
+	,JSON.TrendedData_TRD_A_07					
+	,JSON.TrendedData_TRD_A_08					
+	,JSON.TrendedData_TRD_A_09					
+	,JSON.TrendedData_TRD_A_10					
+	,JSON.TrendedData_TRD_A_11					
+	,JSON.TrendedData_TRD_A_12					
+	,JSON.TrendedData_TRD_A_13					
+	,JSON.TrendedData_TRD_A_14					
+	,JSON.TrendedData_TRD_A_15					
+	,JSON.TrendedData_TRD_A_16					
+	,JSON.TrendedData_TRD_A_17					
+	,JSON.TrendedData_TRD_A_18					
+	,JSON.TrendedData_TRD_A_19					
+	,JSON.TrendedData_TRD_A_20					
+	,JSON.TrendedData_TRD_A_21					
+	,JSON.TrendedData_TRD_A_22					
+	,JSON.TrendedData_TRD_A_23					
+	,JSON.TrendedData_TRD_B_01					
+	,JSON.TrendedData_TRD_B_02					
+	,JSON.TrendedData_TRD_B_03					
+	,JSON.TrendedData_TRD_B_04					
+	,JSON.TrendedData_TRD_B_05					
+	,JSON.TrendedData_TRD_B_06					
+	,JSON.TrendedData_TRD_B_07					
+	,JSON.TrendedData_TRD_B_08					
+	,JSON.TrendedData_TRD_B_09					
+	,JSON.TrendedData_TRD_B_10					
+	,JSON.TrendedData_TRD_B_11					
+	,JSON.TrendedData_TRD_B_12					
+	,JSON.TrendedData_TRD_B_13					
+	,JSON.TrendedData_TRD_B_14					
+	,JSON.TrendedData_TRD_B_15					
+	,JSON.TrendedData_TRD_B_16					
+	,JSON.TrendedData_TRD_B_17					
+	,JSON.TrendedData_TRD_B_18					
+	,JSON.TrendedData_TRD_B_19					
+	,JSON.TrendedData_TRD_B_20					
+	,JSON.TrendedData_TRD_B_21					
+	,JSON.TrendedData_TRD_B_22					
+	,JSON.TrendedData_TRD_B_23					
+	,JSON.TrendedData_TRD_B_24					
+	,JSON.TrendedData_TRD_B_25					
+	,JSON.TrendedData_TRD_B_26					
+	,JSON.TrendedData_TRD_B_27					
+	,JSON.TrendedData_TRD_B_28					
+	,JSON.TrendedData_TRD_B_29					
+	,JSON.TrendedData_TRD_B_30					
+	,JSON.TrendedData_TRD_B_31					
+	,JSON.TrendedData_TRD_B_32					
+	,JSON.TrendedData_TRD_B_33					
+	,JSON.TrendedData_TRD_B_34					
+	,JSON.TrendedData_TRD_B_35					
+	,JSON.TrendedData_TRD_B_36					
+	,JSON.TrendedData_TRD_B_37					
+	,JSON.TrendedData_TRD_B_38					
+	,JSON.TrendedData_TRD_B_39					
+	,JSON.TrendedData_TRD_B_40					
+	,JSON.TrendedData_TRD_B_41					
+	,JSON.TrendedData_TRD_B_42					
+	,JSON.TrendedData_TRD_B_43					
+	,JSON.TrendedData_TRD_B_44					
+	,JSON.TrendedData_TRD_B_45					
+	,JSON.TrendedData_TRD_B_46					
+	,JSON.TrendedData_TRD_B_47					
+	,JSON.TrendedData_TRD_B_48					
+	,JSON.TrendedData_TRD_B_49					
+	,JSON.TrendedData_TRD_B_50					
+	,JSON.TrendedData_TRD_B_51					
+	,JSON.TrendedData_TRD_B_52					
+	,JSON.TrendedData_TRD_B_53					
+	,JSON.TrendedData_TRD_C_01					
+	,JSON.TrendedData_TRD_C_02					
+	,JSON.TrendedData_TRD_C_03					
+	,JSON.TrendedData_TRD_C_04					
+	,JSON.TrendedData_TRD_C_05					
+	,JSON.TrendedData_TRD_C_06					
+	,JSON.TrendedData_TRD_C_07					
+	,JSON.TrendedData_TRD_C_08					
+	,JSON.TrendedData_TRD_C_09					
+	,JSON.TrendedData_TRD_C_10					
+	,JSON.TrendedData_TRD_C_11					
+	,JSON.TrendedData_TRD_C_12					
+	,JSON.TrendedData_TRD_C_13					
+	,JSON.TrendedData_TRD_C_14					
+	,JSON.TrendedData_TRD_C_15					
+	,JSON.TrendedData_TRD_C_16					
+	,JSON.TrendedData_TRD_C_17					
+	,JSON.TrendedData_TRD_C_18					
+	,JSON.TrendedData_TRD_O_01					
+	,JSON.TrendedData_TRD_O_02					
+	,JSON.TrendedData_TRD_O_03					
+	,JSON.TrendedData_TRD_O_04					
+	,JSON.TrendedData_TRD_O_05					
+	,JSON.TrendedData_TRD_O_06					
+	,JSON.TrendedData_TRD_O_07					
+	,JSON.TrendedData_TRD_O_08					
+	,JSON.TrendedData_TRD_O_09					
+	,JSON.TrendedData_TRD_O_10					
+	,JSON.TrendedData_TRD_O_11					
+	,JSON.TrendedData_TRD_O_12					
+	,JSON.TrendedData_TRD_O_13					
+	,JSON.TrendedData_TRD_O_14					
+	,JSON.TrendedData_TRD_O_15					
+	,JSON.TrendedData_TRD_O_16					
+	,JSON.TrendedData_TRD_P_01					
+	,JSON.TrendedData_TRD_P_02					
+	,JSON.TrendedData_TRD_P_03					
+	,JSON.TrendedData_TRD_P_04					
+	,JSON.TrendedData_TRD_P_05					
+	,JSON.TrendedData_TRD_P_06					
+	,JSON.TrendedData_TRD_P_07					
+	,JSON.TrendedData_TRD_P_08					
+	,JSON.TrendedData_TRD_P_09					
+	,JSON.TrendedData_TRD_P_10					
+	,JSON.TrendedData_TRD_P_11					
+	,JSON.TrendedData_TRD_P_12					
+	,JSON.TrendedData_TRD_P_13					
+	,JSON.TrendedData_TRD_P_14					
+	,JSON.TrendedData_TRD_P_15					
+	,JSON.TrendedData_TRD_P_16					
+	,JSON.TrendedData_TRD_P_17					
+	,JSON.TrendedData_TRD_P_18					
+	,JSON.TrendedData_TRD_P_19					
+	,JSON.TrendedData_TRD_P_20					
+	,JSON.TrendedData_TRD_P_21					
+	,JSON.TrendedData_TRD_P_22					
+	,JSON.TrendedData_TRD_P_23					
+	,JSON.TrendedData_TRD_P_24					
+	,JSON.TrendedData_TRD_P_25					
+	,JSON.TrendedData_TRD_P_26					
+	,JSON.TrendedData_TRD_P_27					
+	,JSON.TrendedData_TRD_P_28					
+	,JSON.TrendedData_TRD_P_29					
+	,JSON.TrendedData_TRD_P_30					
+	,JSON.TrendedData_TRD_P_31					
+	,JSON.TrendedData_TRD_P_32					
+	,JSON.TrendedData_TRD_P_33					
+	,JSON.TrendedData_TRD_P_34					
+	,JSON.TrendedData_TRD_P_35					
+	,JSON.TrendedData_TRD_P_36					
+	,JSON.TrendedData_TRD_P_37					
+	,JSON.TrendedData_TRD_P_38					
+	,JSON.TrendedData_TRD_P_39					
+	,JSON.TrendedData_TRD_P_40					
+	,JSON.TrendedData_TRD_S_01					
+	,JSON.TrendedData_TRD_S_02					
+	,JSON.Utilisationblock_SPA01					
+	,JSON.Utilisationblock_SPA02					
+	,JSON.Utilisationblock_SPA03					
+	,JSON.Utilisationblock_SPA04					
+	,JSON.Utilisationblock_SPA05					
+	,JSON.Utilisationblock_SPA06					
+	,JSON.Utilisationblock_SPA07					
+	,JSON.Utilisationblock_SPA08					
+	,JSON.Utilisationblock_SPA09					
+	,JSON.Utilisationblock_SPA10					
+	,JSON.Utilisationblock_SPAA01				
+	,JSON.Utilisationblock_SPAA02				
+	,JSON.Utilisationblock_SPAA03				
+	,JSON.Utilisationblock_SPAA04				
+	,JSON.Utilisationblock_SPAA05				
+	,JSON.Utilisationblock_SPAA06				
+	,JSON.Utilisationblock_SPAA07				
+	,JSON.Utilisationblock_SPAA08				
+	,JSON.Utilisationblock_SPAA09				
+	,JSON.Utilisationblock_SPAA10				
+	,JSON.Utilisationblock_SPAB111				
+	,JSON.Utilisationblock_SPAB112				
+	,JSON.Utilisationblock_SPAB113				
+	,JSON.Utilisationblock_SPAB114				
+	,JSON.Utilisationblock_SPAB115				
+	,JSON.Utilisationblock_SPAB116				
+	,JSON.Utilisationblock_SPAB117				
+	,JSON.Utilisationblock_SPAB218				
+	,JSON.Utilisationblock_SPAB219				
+	,JSON.Utilisationblock_SPAB220				
+	,JSON.Utilisationblock_SPAB221				
+	,JSON.Utilisationblock_SPAB322				
+	,JSON.Utilisationblock_SPAB323				
+	,JSON.Utilisationblock_SPAC24				
+	,JSON.Utilisationblock_SPACIICHECKDIGIT		
+	,JSON.Utilisationblock_SPAD25				
+	,JSON.Utilisationblock_SPAE126				
+	,JSON.Utilisationblock_SPAE127				
+	,JSON.Utilisationblock_SPAE128				
+	,JSON.Utilisationblock_SPAF129				
+	,JSON.Utilisationblock_SPAF130				
+	,JSON.Utilisationblock_SPAF131				
+	,JSON.Utilisationblock_SPAF232				
+	,JSON.Utilisationblock_SPAF233				
+	,JSON.Utilisationblock_SPAF334				
+	,JSON.Utilisationblock_SPAF335				
+	,JSON.Utilisationblock_SPAF336				
+	,JSON.Utilisationblock_SPAG37				
+	,JSON.Utilisationblock_SPAG38				
+	,JSON.Utilisationblock_SPAH39				
+	,JSON.Utilisationblock_SPAH40				
+	,JSON.Utilisationblock_SPAH41				
+	,JSON.Utilisationblock_SPB111				
+	,JSON.Utilisationblock_SPB112				
+	,JSON.Utilisationblock_SPB113				
+	,JSON.Utilisationblock_SPB114				
+	,JSON.Utilisationblock_SPB115				
+	,JSON.Utilisationblock_SPB116				
+	,JSON.Utilisationblock_SPB117				
+	,JSON.Utilisationblock_SPB218				
+	,JSON.Utilisationblock_SPB219				
+	,JSON.Utilisationblock_SPB220				
+	,JSON.Utilisationblock_SPB221				
+	,JSON.Utilisationblock_SPB322				
+	,JSON.Utilisationblock_SPB323				
+	,JSON.Utilisationblock_SPC24					
+	,JSON.Utilisationblock_SPCIICHECKDIGIT		
+	,JSON.Utilisationblock_SPD25					
+	,JSON.Utilisationblock_SPE126				
+	,JSON.Utilisationblock_SPE127				
+	,JSON.Utilisationblock_SPE128				
+	,JSON.Utilisationblock_SPF129				
+	,JSON.Utilisationblock_SPF130				
+	,JSON.Utilisationblock_SPF131				
+	,JSON.Utilisationblock_SPF232				
+	,JSON.Utilisationblock_SPF233				
+	,JSON.Utilisationblock_SPF334				
+	,JSON.Utilisationblock_SPF335				
+	,JSON.Utilisationblock_SPF336				
+	,JSON.Utilisationblock_SPG37					
+	,JSON.Utilisationblock_SPG38					
+	,JSON.Utilisationblock_SPH39					
+	,JSON.Utilisationblock_SPH40					
+	,JSON.Utilisationblock_SPH41					
+	,JSON.AddrLink_NDLNK01						
+	,JSON.AgeDoB_EA4S01							
+	,JSON.AgeDoB_EA4S02							
+	,JSON.AgeDoB_EA4S02_DD						
+	,JSON.AgeDoB_EA4S02_MM						
+	,JSON.AgeDoB_EA4S02_YY						
+	,JSON.AgeDoB_EA4S03							
+	,JSON.AgeDoB_EA4S04							
+	,JSON.AgeDoB_EA4S04_DD						
+	,JSON.AgeDoB_EA4S04_MM						
+	,JSON.AgeDoB_EA4S04_YY						
+	,JSON.AgeDoB_EA4S05							
+	,JSON.AgeDoB_EA4S06							
+	,JSON.AgeDoB_EA4S06_DD						
+	,JSON.AgeDoB_EA4S06_MM						
+	,JSON.AgeDoB_EA4S06_YY						
+	,JSON.AgeDoB_EA4S07							
+	,JSON.AgeDoB_EA4S08							
+	,JSON.AgeDoB_EA4S08_DD						
+	,JSON.AgeDoB_EA4S08_MM						
+	,JSON.AgeDoB_EA4S08_YY						
+	,JSON.AgeDoB_EA5S01							
+	,JSON.AgeDoB_NDDOB							
+	,JSON.CII_NDSPACII							
+	,JSON.CII_NDSPCII							
+	,JSON.Director_NDDIRSP						
+	,JSON.Director_NDDIRSPA						
+	,JSON.ImpairedCH_NDBANKRUPT					
+	,JSON.ImpairedCH_NDCCJ						
+	,JSON.ImpairedCH_NDICH						
+	,JSON.ImpairedCH_NDIVA						
+	,JSON.ImpairedCH_NDJABANKRUPT				
+	,JSON.ImpairedCH_NDJACCJ						
+	,JSON.ImpairedCH_NDJAICH						
+	,JSON.ImpairedCH_NDJAIVA						
+	,JSON.ImpairedCH_NDJASECARR					
+	,JSON.ImpairedCH_NDJAUNSECARR				
+	,JSON.ImpairedCH_NDMABANKRUPT				
+	,JSON.ImpairedCH_NDMACCJ						
+	,JSON.ImpairedCH_NDMAICH						
+	,JSON.ImpairedCH_NDMAIVA						
+	,JSON.ImpairedCH_NDMASECARR					
+	,JSON.ImpairedCH_NDMAUNSECARR				
+	,JSON.ImpairedCH_NDSECARR					
+	,JSON.ImpairedCH_NDUNSECARR					
+	,JSON.Mosaic_EA4M01							
+	,JSON.Mosaic_EA4M02							
+	,JSON.Mosaic_EA4M03							
+	,JSON.Mosaic_EA4M04							
+	,JSON.Mosaic_EA4M05							
+	,JSON.Mosaic_EA4M06							
+	,JSON.Mosaic_EA4M07							
+	,JSON.Mosaic_EA4M08							
+	,JSON.Mosaic_EA4M09							
+	,JSON.Mosaic_EA4M10							
+	,JSON.Mosaic_EA4M11							
+	,JSON.Mosaic_EA4M12							
+	,JSON.Mosaic_EA4N01							
+	,JSON.Mosaic_EA4N02							
+	,JSON.Mosaic_EA4N03							
+	,JSON.Mosaic_EA4N04							
+	,JSON.Mosaic_EA4N05							
+	,JSON.Mosaic_EA4T01							
+	,JSON.Mosaic_EA5T01							
+	,JSON.Mosaic_EA5T02							
+	,JSON.Mosaic_NDG01							
+	,JSON.Mosaic_NDG02							
+	,JSON.Mosaic_NDG03							
+	,JSON.Mosaic_NDG04							
+	,JSON.Mosaic_NDG05							
+	,JSON.Mosaic_NDG06							
+	,JSON.Mosaic_NDG07							
+	,JSON.Mosaic_NDG08							
+	,JSON.Mosaic_NDG09							
+	,JSON.Mosaic_NDG10							
+	,JSON.Mosaic_NDG11							
+	,JSON.Mosaic_NDG12							
+	,JSON.Mosaic_UKMOSAIC						
+	,JSON.Scoring_E5S01							
+	,JSON.Scoring_E5S02							
+	,JSON.Scoring_E5S041							
+	,JSON.Scoring_E5S042							
+	,JSON.Scoring_E5S043							
+	,JSON.Scoring_E5S051							
+	,JSON.Scoring_E5S052							
+	,JSON.Scoring_E5S053							
+	,JSON.Scoring_NDHHOSCORE						
+	,JSON.Scoring_NDSI21							
+	,JSON.Scoring_NDSI22							
+	,JSON.Scoring_NDSI23							
+	,JSON.TPD_NDHHO								
+	,JSON.TPD_NDOPTOUTVALID						
+	,JSON.TPD_NDPA								
+	,JSON.AssetFinanceHP_SPVM101					
+	,JSON.AssetFinanceHP_SPVM102					
+	,JSON.AssetFinanceHP_SPVM103					
+	,JSON.AssetFinanceHP_SPVM104					
+	,JSON.AssetFinanceHP_SPVM105					
+	,JSON.AssetFinanceHP_SPVM106					
+	,JSON.AssetFinanceHP_SPVM107					
+	,JSON.AssetFinanceHP_SPVM108					
+	,JSON.AssetFinanceHP_SPVM109					
+	,JSON.AssetFinanceHP_SPVM110					
+	,JSON.AssetFinanceHP_SPVM111					
+	,JSON.AssetFinanceHP_SPVM112					
+	,JSON.AssetFinanceHP_SPVM113					
+	,JSON.AssetFinanceHP_SPVM114					
+	,JSON.AssetFinanceHP_SPVM115					
+	,JSON.AssetFinanceHP_SPVM116					
+	,JSON.AssetFinanceHP_SPVM117					
+	,JSON.AssetFinanceHP_SPVM118					
+	,JSON.AssetFinanceHP_SPVM119					
+	,JSON.AssetFinanceHP_SPVM120					
+	,JSON.AssetFinanceHP_SPVM121					
+	,JSON.AssetFinanceHP_SPVM122					
+	,JSON.AssetFinanceHP_SPVM123					
+	,JSON.AssetFinanceHP_SPVM124					
+	,JSON.AssetFinanceHP_SPVM125					
+	,JSON.AssetFinanceHP_SPVM126					
+	,JSON.AssetFinanceHP_SPVM127					
+	,JSON.AssetFinanceHP_SPVM128					
+	,JSON.AssetFinanceHP_SPVM129					
+	,JSON.AssetFinanceHP_SPVM130					
+	,JSON.AssetFinanceHP_SPVM131					
+	,JSON.AssetFinanceHP_SPVM132					
+	,JSON.BankCards_SPVM201						
+	,JSON.BankCards_SPVM202						
+	,JSON.BankCards_SPVM203						
+	,JSON.BankCards_SPVM204						
+	,JSON.BankCards_SPVM205						
+	,JSON.BankCards_SPVM206						
+	,JSON.BankCards_SPVM207						
+	,JSON.BankCards_SPVM208						
+	,JSON.BankCards_SPVM209						
+	,JSON.BankCards_SPVM210						
+	,JSON.BankCards_SPVM211						
+	,JSON.BankCards_SPVM212						
+	,JSON.BankCards_SPVM213						
+	,JSON.BankCards_SPVM214						
+	,JSON.BankCards_SPVM215						
+	,JSON.BankCards_SPVM216						
+	,JSON.BankCards_SPVM217						
+	,JSON.BankCards_SPVM218						
+	,JSON.BankCards_SPVM219						
+	,JSON.BankCards_SPVM220						
+	,JSON.BankCards_SPVM221						
+	,JSON.BankCards_SPVM222						
+	,JSON.BankCards_SPVM223						
+	,JSON.BankCards_SPVM224						
+	,JSON.BankCards_SPVM225						
+	,JSON.BankCards_SPVM226						
+	,JSON.BankCards_SPVM227						
+	,JSON.BankCards_SPVM228						
+	,JSON.BankCards_SPVM229						
+	,JSON.BankCards_SPVM230						
+	,JSON.BankCards_SPVM231						
+	,JSON.BankCards_SPVM232						
+	,JSON.BankCards_SPVM233						
+	,JSON.BankCards_SPVM234						
+	,JSON.BankCards_SPVM235						
+	,JSON.BankCards_SPVM236						
+	,JSON.BankCards_SPVM237						
+	,JSON.BankCards_SPVM238						
+	,JSON.BankCards_SPVM239						
+	,JSON.BankCards_SPVM240						
+	,JSON.BankCards_SPVM241						
+	,JSON.CreditSales_SPVM101					
+	,JSON.CreditSales_SPVM102					
+	,JSON.CreditSales_SPVM103					
+	,JSON.CreditSales_SPVM104					
+	,JSON.CreditSales_SPVM105					
+	,JSON.CreditSales_SPVM106					
+	,JSON.CreditSales_SPVM107					
+	,JSON.CreditSales_SPVM108					
+	,JSON.CreditSales_SPVM109					
+	,JSON.CreditSales_SPVM110					
+	,JSON.CreditSales_SPVM111					
+	,JSON.CreditSales_SPVM112					
+	,JSON.CreditSales_SPVM113					
+	,JSON.CreditSales_SPVM114					
+	,JSON.CreditSales_SPVM115					
+	,JSON.CreditSales_SPVM116					
+	,JSON.CreditSales_SPVM117					
+	,JSON.CreditSales_SPVM118					
+	,JSON.CreditSales_SPVM119					
+	,JSON.CreditSales_SPVM120					
+	,JSON.CreditSales_SPVM121					
+	,JSON.CreditSales_SPVM122					
+	,JSON.CreditSales_SPVM123					
+	,JSON.CreditSales_SPVM124					
+	,JSON.CreditSales_SPVM125					
+	,JSON.CreditSales_SPVM126					
+	,JSON.CreditSales_SPVM127					
+	,JSON.CreditSales_SPVM128					
+	,JSON.CreditSales_SPVM129					
+	,JSON.CreditSales_SPVM130					
+	,JSON.CreditSales_SPVM131					
+	,JSON.CreditSales_SPVM132					
+	,JSON.CurrentAccounts_SPVM201				
+	,JSON.CurrentAccounts_SPVM202				
+	,JSON.CurrentAccounts_SPVM203				
+	,JSON.CurrentAccounts_SPVM204				
+	,JSON.CurrentAccounts_SPVM205				
+	,JSON.CurrentAccounts_SPVM206				
+	,JSON.CurrentAccounts_SPVM207				
+	,JSON.CurrentAccounts_SPVM208				
+	,JSON.CurrentAccounts_SPVM209				
+	,JSON.CurrentAccounts_SPVM210				
+	,JSON.CurrentAccounts_SPVM211				
+	,JSON.CurrentAccounts_SPVM212				
+	,JSON.CurrentAccounts_SPVM213				
+	,JSON.CurrentAccounts_SPVM214				
+	,JSON.CurrentAccounts_SPVM215				
+	,JSON.CurrentAccounts_SPVM216				
+	,JSON.CurrentAccounts_SPVM217				
+	,JSON.CurrentAccounts_SPVM218				
+	,JSON.CurrentAccounts_SPVM219				
+	,JSON.CurrentAccounts_SPVM220				
+	,JSON.CurrentAccounts_SPVM221				
+	,JSON.CurrentAccounts_SPVM222				
+	,JSON.CurrentAccounts_SPVM223				
+	,JSON.CurrentAccounts_SPVM224				
+	,JSON.CurrentAccounts_SPVM225				
+	,JSON.CurrentAccounts_SPVM226				
+	,JSON.CurrentAccounts_SPVM227				
+	,JSON.CurrentAccounts_SPVM228				
+	,JSON.CurrentAccounts_SPVM229				
+	,JSON.CurrentAccounts_SPVM230				
+	,JSON.CurrentAccounts_SPVM231				
+	,JSON.CurrentAccounts_SPVM232				
+	,JSON.CurrentAccounts_SPVM233				
+	,JSON.CurrentAccounts_SPVM234				
+	,JSON.CurrentAccounts_SPVM235				
+	,JSON.CurrentAccounts_SPVM236				
+	,JSON.CurrentAccounts_SPVM237				
+	,JSON.CurrentAccounts_SPVM238				
+	,JSON.CurrentAccounts_SPVM239				
+	,JSON.CurrentAccounts_SPVM240				
+	,JSON.CurrentAccounts_SPVM241				
+	,JSON.MailOrderHomeShopping_SPVM201			
+	,JSON.MailOrderHomeShopping_SPVM202			
+	,JSON.MailOrderHomeShopping_SPVM203			
+	,JSON.MailOrderHomeShopping_SPVM204			
+	,JSON.MailOrderHomeShopping_SPVM205			
+	,JSON.MailOrderHomeShopping_SPVM206			
+	,JSON.MailOrderHomeShopping_SPVM207			
+	,JSON.MailOrderHomeShopping_SPVM208			
+	,JSON.MailOrderHomeShopping_SPVM209			
+	,JSON.MailOrderHomeShopping_SPVM210			
+	,JSON.MailOrderHomeShopping_SPVM211			
+	,JSON.MailOrderHomeShopping_SPVM212			
+	,JSON.MailOrderHomeShopping_SPVM213			
+	,JSON.MailOrderHomeShopping_SPVM214			
+	,JSON.MailOrderHomeShopping_SPVM215			
+	,JSON.MailOrderHomeShopping_SPVM216			
+	,JSON.MailOrderHomeShopping_SPVM217			
+	,JSON.MailOrderHomeShopping_SPVM218			
+	,JSON.MailOrderHomeShopping_SPVM219			
+	,JSON.MailOrderHomeShopping_SPVM220			
+	,JSON.MailOrderHomeShopping_SPVM221			
+	,JSON.MailOrderHomeShopping_SPVM222			
+	,JSON.MailOrderHomeShopping_SPVM223			
+	,JSON.MailOrderHomeShopping_SPVM224			
+	,JSON.MailOrderHomeShopping_SPVM225			
+	,JSON.MailOrderHomeShopping_SPVM226			
+	,JSON.MailOrderHomeShopping_SPVM227			
+	,JSON.MailOrderHomeShopping_SPVM228			
+	,JSON.MailOrderHomeShopping_SPVM229			
+	,JSON.MailOrderHomeShopping_SPVM230			
+	,JSON.MailOrderHomeShopping_SPVM231			
+	,JSON.MailOrderHomeShopping_SPVM232			
+	,JSON.MailOrderHomeShopping_SPVM233			
+	,JSON.MailOrderHomeShopping_SPVM234			
+	,JSON.MailOrderHomeShopping_SPVM235			
+	,JSON.MailOrderHomeShopping_SPVM236			
+	,JSON.MailOrderHomeShopping_SPVM237			
+	,JSON.MailOrderHomeShopping_SPVM238			
+	,JSON.MailOrderHomeShopping_SPVM239			
+	,JSON.MailOrderHomeShopping_SPVM240			
+	,JSON.MailOrderHomeShopping_SPVM241			
+	,JSON.Mortgages_SPVM101						
+	,JSON.Mortgages_SPVM102						
+	,JSON.Mortgages_SPVM103						
+	,JSON.Mortgages_SPVM104						
+	,JSON.Mortgages_SPVM105						
+	,JSON.Mortgages_SPVM106						
+	,JSON.Mortgages_SPVM107						
+	,JSON.Mortgages_SPVM108						
+	,JSON.Mortgages_SPVM109						
+	,JSON.Mortgages_SPVM110						
+	,JSON.Mortgages_SPVM111						
+	,JSON.Mortgages_SPVM112						
+	,JSON.Mortgages_SPVM113						
+	,JSON.Mortgages_SPVM114						
+	,JSON.Mortgages_SPVM115						
+	,JSON.Mortgages_SPVM116						
+	,JSON.Mortgages_SPVM117						
+	,JSON.Mortgages_SPVM118						
+	,JSON.Mortgages_SPVM119						
+	,JSON.Mortgages_SPVM120						
+	,JSON.Mortgages_SPVM121						
+	,JSON.Mortgages_SPVM122						
+	,JSON.Mortgages_SPVM123						
+	,JSON.Mortgages_SPVM124						
+	,JSON.Mortgages_SPVM125						
+	,JSON.Mortgages_SPVM126						
+	,JSON.Mortgages_SPVM127						
+	,JSON.Mortgages_SPVM128						
+	,JSON.Mortgages_SPVM129						
+	,JSON.Mortgages_SPVM130						
+	,JSON.Mortgages_SPVM131						
+	,JSON.Mortgages_SPVM132						
+	,JSON.RetailStoreCards_SPVM201				
+	,JSON.RetailStoreCards_SPVM202				
+	,JSON.RetailStoreCards_SPVM203				
+	,JSON.RetailStoreCards_SPVM204				
+	,JSON.RetailStoreCards_SPVM205				
+	,JSON.RetailStoreCards_SPVM206				
+	,JSON.RetailStoreCards_SPVM207				
+	,JSON.RetailStoreCards_SPVM208				
+	,JSON.RetailStoreCards_SPVM209				
+	,JSON.RetailStoreCards_SPVM210				
+	,JSON.RetailStoreCards_SPVM211				
+	,JSON.RetailStoreCards_SPVM212				
+	,JSON.RetailStoreCards_SPVM213				
+	,JSON.RetailStoreCards_SPVM214				
+	,JSON.RetailStoreCards_SPVM215				
+	,JSON.RetailStoreCards_SPVM216				
+	,JSON.RetailStoreCards_SPVM217				
+	,JSON.RetailStoreCards_SPVM218				
+	,JSON.RetailStoreCards_SPVM219				
+	,JSON.RetailStoreCards_SPVM220				
+	,JSON.RetailStoreCards_SPVM221				
+	,JSON.RetailStoreCards_SPVM222				
+	,JSON.RetailStoreCards_SPVM223				
+	,JSON.RetailStoreCards_SPVM224				
+	,JSON.RetailStoreCards_SPVM225				
+	,JSON.RetailStoreCards_SPVM226				
+	,JSON.RetailStoreCards_SPVM227				
+	,JSON.RetailStoreCards_SPVM228				
+	,JSON.RetailStoreCards_SPVM229				
+	,JSON.RetailStoreCards_SPVM230				
+	,JSON.RetailStoreCards_SPVM231				
+	,JSON.RetailStoreCards_SPVM232				
+	,JSON.RetailStoreCards_SPVM233				
+	,JSON.RetailStoreCards_SPVM234				
+	,JSON.RetailStoreCards_SPVM235				
+	,JSON.RetailStoreCards_SPVM236				
+	,JSON.RetailStoreCards_SPVM237				
+	,JSON.RetailStoreCards_SPVM238				
+	,JSON.RetailStoreCards_SPVM239				
+	,JSON.RetailStoreCards_SPVM240				
+	,JSON.RetailStoreCards_SPVM241				
+	,JSON.SecuredLoans_SPVM101					
+	,JSON.SecuredLoans_SPVM102					
+	,JSON.SecuredLoans_SPVM103					
+	,JSON.SecuredLoans_SPVM104					
+	,JSON.SecuredLoans_SPVM105					
+	,JSON.SecuredLoans_SPVM106					
+	,JSON.SecuredLoans_SPVM107					
+	,JSON.SecuredLoans_SPVM108					
+	,JSON.SecuredLoans_SPVM109					
+	,JSON.SecuredLoans_SPVM110					
+	,JSON.SecuredLoans_SPVM111					
+	,JSON.SecuredLoans_SPVM112					
+	,JSON.SecuredLoans_SPVM113					
+	,JSON.SecuredLoans_SPVM114					
+	,JSON.SecuredLoans_SPVM115					
+	,JSON.SecuredLoans_SPVM116					
+	,JSON.SecuredLoans_SPVM117					
+	,JSON.SecuredLoans_SPVM118					
+	,JSON.SecuredLoans_SPVM119					
+	,JSON.SecuredLoans_SPVM120					
+	,JSON.SecuredLoans_SPVM121					
+	,JSON.SecuredLoans_SPVM122					
+	,JSON.SecuredLoans_SPVM123					
+	,JSON.SecuredLoans_SPVM124					
+	,JSON.SecuredLoans_SPVM125					
+	,JSON.SecuredLoans_SPVM126					
+	,JSON.SecuredLoans_SPVM127					
+	,JSON.SecuredLoans_SPVM128					
+	,JSON.SecuredLoans_SPVM129					
+	,JSON.SecuredLoans_SPVM130					
+	,JSON.SecuredLoans_SPVM131					
+	,JSON.SecuredLoans_SPVM132					
+	,JSON.UnsecuredLoans_SPVM101					
+	,JSON.UnsecuredLoans_SPVM102					
+	,JSON.UnsecuredLoans_SPVM103					
+	,JSON.UnsecuredLoans_SPVM104					
+	,JSON.UnsecuredLoans_SPVM105					
+	,JSON.UnsecuredLoans_SPVM106					
+	,JSON.UnsecuredLoans_SPVM107					
+	,JSON.UnsecuredLoans_SPVM108					
+	,JSON.UnsecuredLoans_SPVM109					
+	,JSON.UnsecuredLoans_SPVM110					
+	,JSON.UnsecuredLoans_SPVM111					
+	,JSON.UnsecuredLoans_SPVM112					
+	,JSON.UnsecuredLoans_SPVM113					
+	,JSON.UnsecuredLoans_SPVM114					
+	,JSON.UnsecuredLoans_SPVM115					
+	,JSON.UnsecuredLoans_SPVM116					
+	,JSON.UnsecuredLoans_SPVM117					
+	,JSON.UnsecuredLoans_SPVM118					
+	,JSON.UnsecuredLoans_SPVM119					
+	,JSON.UnsecuredLoans_SPVM120					
+	,JSON.UnsecuredLoans_SPVM121					
+	,JSON.UnsecuredLoans_SPVM122					
+	,JSON.UnsecuredLoans_SPVM123					
+	,JSON.UnsecuredLoans_SPVM124					
+	,JSON.UnsecuredLoans_SPVM125					
+	,JSON.UnsecuredLoans_SPVM126					
+	,JSON.UnsecuredLoans_SPVM127					
+	,JSON.UnsecuredLoans_SPVM128					
+	,JSON.UnsecuredLoans_SPVM129					
+	,JSON.UnsecuredLoans_SPVM130					
+	,JSON.UnsecuredLoans_SPVM131					
+	,JSON.UnsecuredLoans_SPVM132					
+	,JSON.Utilities_SPVM101						
+	,JSON.Utilities_SPVM102						
+	,JSON.Utilities_SPVM103						
+	,JSON.Utilities_SPVM104						
+	,JSON.Utilities_SPVM105						
+	,JSON.Utilities_SPVM106						
+	,JSON.Utilities_SPVM107						
+	,JSON.Utilities_SPVM108						
+	,JSON.Utilities_SPVM109						
+	,JSON.Utilities_SPVM110						
+	,JSON.Utilities_SPVM111						
+	,JSON.Utilities_SPVM112						
+	,JSON.Utilities_SPVM113						
+	,JSON.Utilities_SPVM114						
+	,JSON.Utilities_SPVM115						
+	,JSON.Utilities_SPVM116						
+	,JSON.Utilities_SPVM117						
+	,JSON.Utilities_SPVM118						
+	,JSON.Utilities_SPVM119						
+	,JSON.Utilities_SPVM120						
+	,JSON.Utilities_SPVM121						
+	,JSON.Utilities_SPVM122						
+	,JSON.Utilities_SPVM123						
+	,JSON.Utilities_SPVM124						
+	,JSON.Utilities_SPVM125						
+	,JSON.Utilities_SPVM126						
+	,JSON.Utilities_SPVM127						
+	,JSON.Utilities_SPVM128						
+	,JSON.Utilities_SPVM129						
+	,JSON.Utilities_SPVM130						
+	,JSON.Utilities_SPVM131						
+	,JSON.Utilities_SPVM132						
 FROM [Delphi].[ECTDB_UAT_Raw_Stg] AS sbd 
 CROSS APPLY Openjson(sbd.[JSON_Response]) WITH (
 	APACSCCBehavrlData_CCDATASUPPLIED									NVARCHAR(1)									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.APACSCCBehavrlData.CCDATASUPPLIED'
@@ -183,69 +1030,6 @@ CROSS APPLY Openjson(sbd.[JSON_Response]) WITH (
 	,HighCostCredit_TRD_STL_21									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HighCostCredit."TRD-STL-21"'
 	,HighCostCredit_TRD_STL_22									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HighCostCredit."TRD-STL-22"'
 	,HighCostCredit_TRD_STL_23									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HighCostCredit."TRD-STL-23"'
-
-	/*
-	,HomeCreditBlock_HCA01									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCA01'
-	,HomeCreditBlock_HCA02									NVARCHAR(1)									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCA02'
-	,HomeCreditBlock_HCA03									NVARCHAR(1)									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCA03'
-	,HomeCreditBlock_HCA04									NVARCHAR(1)									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCA04'
-	,HomeCreditBlock_HCA05									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCA05'
-	,HomeCreditBlock_HCA06									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCA06'
-	,HomeCreditBlock_HCA07									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCA07'
-	,HomeCreditBlock_HCA08									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCA08'
-	,HomeCreditBlock_HCA09									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCA09'
-	,HomeCreditBlock_HCA10									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCA10'
-	,HomeCreditBlock_HCA11									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCA11'
-	,HomeCreditBlock_HCA12									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCA12'
-	,HomeCreditBlock_HCA13									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCA13'
-	,HomeCreditBlock_HCA14									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCA14'
-	,HomeCreditBlock_HCB01									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCB01'
-	,HomeCreditBlock_HCB02									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCB02'
-	,HomeCreditBlock_HCB03									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCB03'
-	,HomeCreditBlock_HCB04									NVARCHAR(1)									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCB04'
-	,HomeCreditBlock_HCC01									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCC01'
-	,HomeCreditBlock_HCC02									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCC02'
-	,HomeCreditBlock_HCC03									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCC03'
-	,HomeCreditBlock_HCC04									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCC04'
-	,HomeCreditBlock_HCC05									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCC05'
-	,HomeCreditBlock_HCD01									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCD01'
-	,HomeCreditBlock_HCD02									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCD02'
-	,HomeCreditBlock_HCE01									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCE01'
-	,HomeCreditBlock_HCE02									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCE02'
-	,HomeCreditBlock_HCE03									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCE03'
-	,HomeCreditBlock_HCF01									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCF01'
-	,HomeCreditBlock_HCF02									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCF02'
-	,HomeCreditBlock_HCF03									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCF03'
-	,HomeCreditBlock_HCF04									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCF04'
-	,HomeCreditBlock_HCF05									NVARCHAR(1)									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCF05'
-	,HomeCreditBlock_HCF06									NVARCHAR(1)									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCF06'
-	,HomeCreditBlock_HCP01									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCP01'
-	,HomeCreditBlock_HCP02									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCP02'
-	,HomeCreditBlock_HCP03									NVARCHAR(1)									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCP03'
-	,HomeCreditBlock_HCP04									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCP04'
-	,HomeCreditBlock_HCP05									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCP05'
-	,HomeCreditBlock_HCP06									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCP06'
-	,HomeCreditBlock_HCP07									NVARCHAR(1)									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCP07'
-	,HomeCreditBlock_HCP08									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.HCP08'
-	,HomeCreditBlock_PDA01									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.PDA01'
-	,HomeCreditBlock_PDA02									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.PDA02'
-	,HomeCreditBlock_PDA03									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.PDA03'
-	,HomeCreditBlock_PDA04									NVARCHAR(1)									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.PDA04'
-	,HomeCreditBlock_PDB05									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.PDB05'
-	,HomeCreditBlock_PDB06									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.PDB06'
-	,HomeCreditBlock_PDB07									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.PDB07'
-	,HomeCreditBlock_PDB08									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.PDB08'
-	,HomeCreditBlock_PDB09									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.PDB09'
-	,HomeCreditBlock_PDB10									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.PDB10'
-	,HomeCreditBlock_PDC11									NVARCHAR(1)									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.PDC11'
-	,HomeCreditBlock_PDC12									NVARCHAR(1)									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.PDC12'
-	,HomeCreditBlock_PDC13									NVARCHAR(1)									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.PDC13'
-	,HomeCreditBlock_PDD14									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.PDD14'
-	,HomeCreditBlock_PDD15									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.PDD15'
-	,HomeCreditBlock_PDD16									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.PDD16'
-	,HomeCreditBlock_PDE17									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.PDE17'
-	,HomeCreditBlock_PDE18									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.HomeCreditBlock.PDE18'
-	*/
 
 	,NeverPaidDefsBlock_SPABALEBADS									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.NeverPaidDefsBlock.SPABALEBADS'
 	,NeverPaidDefsBlock_SPABALEBADSL12									INT									N'$.Response.ConsumerSummary.PremiumValueData.AdditDelphiBlocks.NeverPaidDefsBlock.SPABALEBADSL12'
