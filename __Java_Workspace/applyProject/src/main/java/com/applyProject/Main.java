@@ -32,12 +32,13 @@ public class Main {
 		// Set Up
 		////////////////////////////////////////////////
 		
+		//Load setup parameter file
+		SetUp.loadSetUpProperties();
+		
+		
 		//Using GSON to get a representation of an object easily
 		GsonBuilder builder = new GsonBuilder(); 
 		Gson gson = builder.create();
-		
-		
-		
 		
 		//Struggling to deal with closing the scanner, as any later need for it creates a Runtime Exception.
 		// surrounding with TRY doesn't fix
@@ -55,8 +56,8 @@ public class Main {
 		//Create a Database connection Object. test Connection & CRUD operations should be methods of this
 		// For this I've set up an Integration User with only permissions the application needs
 		AzureJDBC db = new AzureJDBC(
-			"jdbc_integration_user@btrqasdlvl4"
-			,"tCL8s0&s£2q3" //Look into how to hide this, shouldn't be hard-coded into the program
+			SetUp.jdbcUser
+			,SetUp.jdbcPwd
 		);
 		
 		
@@ -114,8 +115,8 @@ public class Main {
 		
 		//So don't have to build a match logic (which isn't a beginner job), use a random number for external data
 		Random r = new Random();
-		int low = 1;
-		int high = 100;
+		int low = SetUp.minId;
+		int high = SetUp.maxId;
 		int randomid = r.nextInt(high-low) + low;
 		System.out.printf("RandomId = %d\n",randomid);
 		

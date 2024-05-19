@@ -230,8 +230,11 @@ public class AzureJDBC {
 		try {
 			conn = DriverManager.getConnection(this.jdbcConnectionURL);
 			
-			Statement statement = conn.createStatement();
-			ResultSet resultSet = statement.executeQuery(query);
+//			Statement statement = conn.createStatement();
+			PreparedStatement statement = conn.prepareStatement(query);
+			ResultSet resultSet = statement.executeQuery();
+			
+			resultSet.next();
 			
 			vResult = resultSet.getInt("__MIN");
 			
@@ -264,8 +267,11 @@ public class AzureJDBC {
 		try {
 			conn = DriverManager.getConnection(this.jdbcConnectionURL);
 			
-			Statement statement = conn.createStatement();
-			ResultSet resultSet = statement.executeQuery(query);
+//			Statement statement = conn.createStatement();
+			PreparedStatement statement = conn.prepareStatement(query);
+			ResultSet resultSet = statement.executeQuery();
+			
+			resultSet.next();
 			
 			vResult = resultSet.getInt("__max");
 			
