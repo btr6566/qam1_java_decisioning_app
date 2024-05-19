@@ -1,7 +1,7 @@
 package com.applyProject.policy;
 
-import com.applyProject.policy.enums.Decision;
-import com.applyProject.policy.enums.PolicyCodes;
+import com.applyProject.enums.Decision;
+import com.applyProject.enums.PolicyCodes;
 import com.applyProject.programData.CaseData;
 
 public final class D_002 extends PolicyRule {

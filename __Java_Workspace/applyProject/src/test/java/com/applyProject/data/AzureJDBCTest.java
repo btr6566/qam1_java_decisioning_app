@@ -10,6 +10,8 @@ import java.io.IOException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import com.applyProject.programData.AzureJDBC;
+
 class AzureJDBCTest {
 	
 	//--------

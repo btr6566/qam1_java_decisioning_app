@@ -1,4 +1,4 @@
-package com.applyProject.policy.enums;
+package com.applyProject.enums;
 
 public enum PolicyCodes {
 	D_001,

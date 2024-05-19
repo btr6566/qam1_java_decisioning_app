@@ -2,11 +2,11 @@ package com.applyProject;
 
 import java.util.Random;
 
-import com.applyProject.data.AzureJDBC;
-import com.applyProject.data.UserInput;
 import com.applyProject.programData.Applicant;
+import com.applyProject.programData.AzureJDBC;
 import com.applyProject.programData.CaseData;
 import com.applyProject.programData.DecisioningDataRow;
+import com.applyProject.programData.UserInput;
 import com.applyProject.scorecards.Challanger;
 import com.applyProject.scorecards.Champion;
 import com.applyProject.scorecards.NumericCharacteristic;

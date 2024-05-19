@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import com.applyProject.enums.ResidentialStatus;
 import com.applyProject.programData.Applicant;
+import com.applyProject.programData.UserInput;
 
 
 //@Disabled these once done, as manual input goes against the indea of automated coverage

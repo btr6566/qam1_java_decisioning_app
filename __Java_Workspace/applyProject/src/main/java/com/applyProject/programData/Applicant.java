@@ -2,8 +2,8 @@ package com.applyProject.programData;
 
 import java.util.Date;
 
-import com.applyProject.data.EmploymentStatus;
-import com.applyProject.data.ResidentialStatus;
+import com.applyProject.enums.EmploymentStatus;
+import com.applyProject.enums.ResidentialStatus;
 
 public class Applicant {
 	

@@ -1,6 +1,6 @@
 package com.applyProject.scorecards;
 
-import com.applyProject.data.EmploymentStatus;
+import com.applyProject.enums.EmploymentStatus;
 
 public class Challanger {
 
