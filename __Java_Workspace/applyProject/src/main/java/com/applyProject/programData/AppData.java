@@ -3,32 +3,36 @@ package com.applyProject.programData;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.applyProject.policy.PolicyRule;
 import com.applyProject.scorecards.Scorecard;
 
-public class CaseData {
+public class AppData {
 	
 	////////////
 	//Properties
 	///////////
 	
 	//For now, only support 1 applicant
-	Applicant appl;
+	protected Applicant appl;
 	
-	DecisioningDataRow decData;
+	protected DecisioningDataRow decData;
 	
-	Integer scorecardRngResult;
-	String strategyPath;
+	protected Integer scorecardRngResult;
+	protected String strategyPath;
 	
-	ArrayList<Scorecard> scorecards;
+	protected ArrayList<Scorecard> scorecards;
+	
+	protected ArrayList<PolicyRule> flags;
 	
 	
 	//////////////
 	// Constructors
 	//////////////	
-	public CaseData() {
+	public AppData() {
 		super();
 		
 		scorecards = new ArrayList<>();
+		flags = new ArrayList<>();
 		
 		//Generate a Random number, will need this later to decide which Path to use
 		Random r = new Random();
@@ -65,9 +69,7 @@ public class CaseData {
 	public String getStrategyPath() {
 		return strategyPath;
 	}
-	public void setStrategyPath(String strategyPath) {
-		this.strategyPath = strategyPath;
-	}
+
 	public DecisioningDataRow getDecData() {
 		return decData;
 	}
@@ -83,16 +85,22 @@ public class CaseData {
 		return scorecards;
 	}
 	
+
 	public Scorecard getScorecardByIndex(int index) {
 		
 		Scorecard scorecard = scorecards.get(index);
 		
 		return scorecard;
 	}
-
-	public void setScorecards(ArrayList<Scorecard> scorecards) {
-		this.scorecards = scorecards;
-	}	
 	
+	public void addFlag(PolicyRule rule) {
+		
+		flags.add(rule);
+		
+	}
+	
+	public ArrayList<PolicyRule> getFlags() {
+		return flags;
+	}
 
 }

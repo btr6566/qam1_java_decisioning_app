@@ -6,22 +6,25 @@ import java.util.regex.Pattern;
 
 import com.applyProject.enums.Decision;
 import com.applyProject.enums.PolicyCodes;
-import com.applyProject.programData.CaseData;
+import com.applyProject.programData.AppData;
 
 public final class D_001 extends PolicyRule {
 
 	/////////////
 	//Properties set up
 	/////////////
-	PolicyCodes policyCode = PolicyCodes.D_001;
-	Decision decisionType = Decision.DECLINE;
+	public D_001() {
+		super();
+		setPolicyCode(PolicyCodes.D_001);
+		setDecisionType(Decision.DECLINE);
+	}
 	
 	
 	/////////////
 	//Methods
 	/////////////
 //	@Override
-	public void ruleOutcome(CaseData data) {
+	public void ruleOutcome(AppData data) {
 	
 		String E1B08 = data.getDecData().getE1B08();
 		

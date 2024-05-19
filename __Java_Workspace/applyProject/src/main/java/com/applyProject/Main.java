@@ -2,9 +2,10 @@ package com.applyProject;
 
 import java.util.Random;
 
+import com.applyProject.policy.*;
 import com.applyProject.programData.Applicant;
 import com.applyProject.programData.AzureJDBC;
-import com.applyProject.programData.CaseData;
+import com.applyProject.programData.AppData;
 import com.applyProject.programData.DecisioningDataRow;
 import com.applyProject.programData.UserInput;
 import com.applyProject.scorecards.Challanger;
@@ -36,7 +37,7 @@ public class Main {
 		//Load setup parameter file
 		SetUp.loadSetUpProperties();
 		
-		CaseData caseData = new CaseData();
+		AppData caseData = new AppData();
 		
 		//Using GSON to get a representation of an object easily
 		GsonBuilder builder = new GsonBuilder(); 
@@ -272,11 +273,22 @@ public class Main {
 		// Policy
 		////////////////////////////////////////////////
 		
+		//Not happy with these 3 lines to run rules & add Outcomes...
 		
 		// E1B08 Policy
-		// DelphiScore Policy
-		// Scorecard Decline
+		D_001 d_001 = new D_001();
+		d_001.ruleOutcome(caseData);
+		caseData.addFlag(d_001);
 		
+		// DelphiScore Policy
+		D_002 d_002 = new D_002();
+		d_002.ruleOutcome(caseData);
+		caseData.addFlag(d_002);
+		
+		// Scorecard Decline
+		D_003 d_003 = new D_003();
+		d_003.ruleOutcome(caseData);
+		caseData.addFlag(d_003);
 		
 		//Existing Customer (Northwind) Policy
 		
