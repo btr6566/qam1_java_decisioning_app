@@ -3,6 +3,7 @@ package com.applyProject.programData;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.applyProject.enums.StrategyPath;
 import com.applyProject.policy.PolicyRule;
 import com.applyProject.scorecards.Scorecard;
 
@@ -18,7 +19,7 @@ public class AppData {
 	protected DecisioningDataRow decData;
 	
 	protected Integer scorecardRngResult;
-	protected String strategyPath;
+	protected StrategyPath strategyPath;
 	
 	protected ArrayList<Scorecard> scorecards;
 	
@@ -45,9 +46,9 @@ public class AppData {
 	
 		//Set which strategy to follow upfront 
 		if (scorecardRngResult <= 60) {
-			strategyPath = "CHAMPION";
+			strategyPath = StrategyPath.CHAMPION;
 		} else {
-			strategyPath = "CHALLANGER";
+			strategyPath = StrategyPath.CHALLANGER;
 		}
 	}
 	
@@ -66,7 +67,7 @@ public class AppData {
 		return scorecardRngResult;
 	}
 
-	public String getStrategyPath() {
+	public StrategyPath getStrategyPath() {
 		return strategyPath;
 	}
 

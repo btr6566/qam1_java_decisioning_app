@@ -25,7 +25,7 @@ public class Main {
 	// MAIN
 	////////////////////////////////////////////////
 	
-	//This supress warnings is used because the scorecard characteristics are technically not used
+	//This suppresses warnings is used because the scorecard characteristics are technically not used
 	
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
@@ -294,11 +294,18 @@ public class Main {
 		
 		
 		//Accept
+		A_001 a_001 = new A_001();
+		a_001.ruleOutcome(caseData);
+		caseData.addFlag(a_001);
 		
 		////////////////////////////////////////////////
 		// Shutdown
 		////////////////////////////////////////////////
 		userInput.closeUserInput();
+		
+		
+		
+		System.gc();
 		
 		
 		

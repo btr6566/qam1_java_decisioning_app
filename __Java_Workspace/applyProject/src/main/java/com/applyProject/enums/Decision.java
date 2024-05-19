@@ -4,5 +4,6 @@ public enum Decision {
 	
 	ACCEPT,
 	REFER,
-	DECLINE
+	DECLINE,
+	NO_DECISION
 }

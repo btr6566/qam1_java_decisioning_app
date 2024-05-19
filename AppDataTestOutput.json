@@ -1,0 +1,129 @@
+{
+	"appl": {
+		"forename": "T",
+		"surname": "T",
+		"employmentStatus": "FullTime",
+		"residentialStatus": "HomeOwner"
+	},
+	"decData": {
+		"pk": 4874,
+		"E1B07": "0",
+		"E1B08": "0",
+		"E1B09": 2,
+		"TRD_A_13": -3,
+		"E1A09": 0,
+		"E5S051": 777,
+		"NDSPCII": -4,
+		"TRD_A_06": 2,
+		"E1B13": 0,
+		"E1B01": 0,
+		"TRD_STL_14": -2,
+		"TRD_STL_19": -2
+	},
+	"scorecardRngResult": 77,
+	"strategyPath": "CHALLANGER",
+	"scorecards": [
+		{
+			"scorecardName": "ChampionScorecard",
+			"score": 733,
+			"index": 0,
+			"probOfDefault": 0.0024726231566347745,
+			"stringCharacteristics": [
+				{
+					"characteristicValue": "0",
+					"name": "E1B07",
+					"bandingScore": 27
+				},
+				{
+					"characteristicValue": "HomeOwner",
+					"name": "ResidentialStatus",
+					"bandingScore": 40
+				}
+			],
+			"numberCharacteristics": [
+				{
+					"characteristicValue": 2,
+					"name": "E1B09",
+					"bandingScore": 10
+				},
+				{
+					"characteristicValue": -3,
+					"name": "TRD-A-13",
+					"bandingScore": 40
+				},
+				{
+					"characteristicValue": 0,
+					"name": "E1A09",
+					"bandingScore": 46
+				},
+				{
+					"characteristicValue": -2,
+					"name": "TRDSTL14",
+					"bandingScore": -30
+				}
+			]
+		},
+		{
+			"scorecardName": "ChallangerScorecard",
+			"score": 691,
+			"index": 0,
+			"probOfDefault": 0.01798620996209156,
+			"stringCharacteristics": [
+				{
+					"characteristicValue": "FullTime",
+					"name": "EmploymentStatus",
+					"bandingScore": 45
+				}
+			],
+			"numberCharacteristics": [
+				{
+					"characteristicValue": -4,
+					"name": "NDSPCII",
+					"bandingScore": -40
+				},
+				{
+					"characteristicValue": 2,
+					"name": "TRD-A-06",
+					"bandingScore": 14
+				},
+				{
+					"characteristicValue": 0,
+					"name": "E1B13",
+					"bandingScore": 26
+				},
+				{
+					"characteristicValue": 0,
+					"name": "E1B01",
+					"bandingScore": 34
+				},
+				{
+					"characteristicValue": -2,
+					"name": "TRD-STL-19",
+					"bandingScore": 32
+				}
+			]
+		}
+	],
+	"flags": [
+		{
+			"policyCode": "D_001",
+			"ruleOutcome": "PASS",
+			"decisionType": "DECLINE"
+		},
+		{
+			"policyCode": "D_002",
+			"ruleOutcome": "PASS",
+			"decisionType": "DECLINE"
+		},
+		{
+			"policyCode": "D_003",
+			"ruleOutcome": "PASS",
+			"decisionType": "DECLINE"
+		},
+		{
+			"policyCode": "A_001",
+			"ruleOutcome": "PASS",
+			"decisionType": "ACCEPT"
+		}
+	]
+}

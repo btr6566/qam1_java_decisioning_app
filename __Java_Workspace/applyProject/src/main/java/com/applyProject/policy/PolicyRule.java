@@ -33,6 +33,10 @@ public abstract class PolicyRule {
 	public void setDecisionType(Decision decisionType) {
 		this.decisionType = decisionType;
 	}
+	
+	public Results getRuleOutcome() {
+		return ruleOutcome;
+	}
 
 
 	// Idea was to use this RuleOutome as a manditory method to implement
@@ -45,13 +49,12 @@ public abstract class PolicyRule {
 	protected void setRuleOutcome(Boolean failTrigger) {
 		
 		try {
-			if (failTrigger) {
-				this.ruleOutcome = Results.FAIL;
-			} else {
-				this.ruleOutcome = Results.PASS;
-			}
+
+			this.ruleOutcome = (failTrigger) ? Results.FAIL : Results.PASS;
+
 		} catch (NullPointerException e) {
 			this.ruleOutcome = Results.UNKNOWN;
+			e.getMessage();
 			e.printStackTrace();
 		}
 	}

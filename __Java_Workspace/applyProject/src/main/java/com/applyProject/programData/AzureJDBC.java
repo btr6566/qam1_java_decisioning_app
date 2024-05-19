@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 //import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-import java.sql.Statement;
-
 
 ////////////////////////
 // Class Define
@@ -174,8 +172,9 @@ public class AzureJDBC {
 				+ "    su.__PK = ?;"
 				;
 		
+		
 		try (
-                Connection conn = DriverManager.getConnection(jdbcConnectionURL, username, password);
+				Connection conn = DriverManager.getConnection(jdbcConnectionURL, username, password);
 				PreparedStatement statement = conn.prepareStatement(decisionStatement);
             ) {
 			
@@ -213,7 +212,7 @@ public class AzureJDBC {
         } catch (SQLException e) {
             System.out.println("ERROR: " + e.getMessage());
             System.out.println("Stack Trace = " + e.getStackTrace());
-        }
+        } 
 		return null;
 		
 	}
@@ -256,6 +255,8 @@ public class AzureJDBC {
 		return vResult;
 	}
 	
+	
+	
 	public Integer getMaxDecisionDataId() {
 		
 		String query = "SELECT max(__PK) AS __max FROM [Delphi].[VW_DelphiSummaryData]";
@@ -292,44 +293,5 @@ public class AzureJDBC {
 		
 		return vResult;
 	}
-	
-
-	////////////////////////
-	// CRUD TEST
-	///////////////////////
-
-	
-	// Basic Test to try & query the DB
-	public void getTest() {
-		
-
-         // The try syntax that auto closes resources if no longer needed?
-         try (
-                 Connection conn = DriverManager.getConnection(jdbcConnectionURL, username, password);
-                 Statement statement = conn.createStatement();
-                 ResultSet resultSet = statement.executeQuery("SELECT TOP 10 * FROM dbo.Customers;");
-             ) {
-
-                 resultSet.next(); // a Result Set starts from before 1st Row, this moves it actual start
-
-//                 ResultSetMetaData meta = resultSet.getMetaData();
-                 String customerID = resultSet.getString("CustomerID");
-                 String companyName = resultSet.getString("CompanyName");
-
-                 //Meta Data
-//                 System.out.printf("meta.getCatalogName = %s\n", meta.getCatalogName(0));
-                 
-                 
-                 //Actual Data
-                 System.out.printf("customerID = %s\n",customerID);
-                 System.out.printf("companyName = %s\n",companyName);
-
-                 return;
-                 
-             } catch (SQLException e) {
-                 System.out.println("ERROR: " + e.getMessage());
-                 System.out.println("Stack Trace = " + e.getStackTrace());
-         }
-     }
 
 }
