@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class SetUpTest {
 
 	@Test
-	void getSetUpProperties() {
+	void loadSetUpProperties() {
 		
 		SetUp.loadSetUpProperties();
 		
