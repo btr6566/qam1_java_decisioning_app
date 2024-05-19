@@ -5,6 +5,7 @@ import java.util.Random;
 import com.applyProject.data.AzureJDBC;
 import com.applyProject.data.UserInput;
 import com.applyProject.programData.Applicant;
+import com.applyProject.programData.CaseData;
 import com.applyProject.programData.DecisioningDataRow;
 import com.applyProject.scorecards.Challanger;
 import com.applyProject.scorecards.Champion;
@@ -35,6 +36,7 @@ public class Main {
 		//Load setup parameter file
 		SetUp.loadSetUpProperties();
 		
+		CaseData caseData = new CaseData();
 		
 		//Using GSON to get a representation of an object easily
 		GsonBuilder builder = new GsonBuilder(); 
@@ -87,7 +89,7 @@ public class Main {
 		// Create an Applicant Object to store data on them
 		// An Object is handy if this expands to allow Joint applicants (i.e. could have more then 1).
 		Applicant appl1 = new Applicant();
-		
+		caseData.setAppl(appl1);
 		
 		
 		//Basic applicant details
@@ -120,13 +122,16 @@ public class Main {
 		int randomid = r.nextInt(high-low) + low;
 		System.out.printf("RandomId = %d\n",randomid);
 		
-		
+		//This forms the basis of what holds the data needed for Scorecards & Policy
 		DecisioningDataRow decData = db.getDecisionData(randomid);
-		
+		caseData.setDecData(decData);
 		
 		////////////////////////////////////////////////
 		// Scorecards
 		////////////////////////////////////////////////
+		
+
+		
 		
 		//Idea is to calculate both, regardless of final one used
 		// This is useful for MI when comparing the strategies
@@ -137,6 +142,8 @@ public class Main {
 		
 		//Use Constructor to set Base/Starting score
 		Scorecard championSc = new Scorecard("ChampionScorecard",600);
+		caseData.addScorecard(championSc);
+		
 		
 		
 		//add characteristic E1B07, Must be a cleaner way of doing this...
@@ -209,6 +216,8 @@ public class Main {
 		
 		//Use Constructor to set Base/Starting score
 		Scorecard challangerSc = new Scorecard("ChallangerScorecard",580);		
+		caseData.addScorecard(challangerSc);
+		
 		
 		NumericCharacteristic challangerNDSPCII = new NumericCharacteristic(
 				"NDSPCII"
@@ -284,10 +293,11 @@ public class Main {
 		////////////////////////////////////////////////
 		// Console Log for testing
 		////////////////////////////////////////////////
-		System.out.println(gson.toJson(appl1));
-		System.out.println(gson.toJson(decData));
-		System.out.println(gson.toJson(championSc));
-		System.out.println(gson.toJson(challangerSc));
+		System.out.println(gson.toJson(caseData));
+//		System.out.println(gson.toJson(appl1));
+//		System.out.println(gson.toJson(decData));
+//		System.out.println(gson.toJson(championSc));
+//		System.out.println(gson.toJson(challangerSc));
 	}
 	
 	

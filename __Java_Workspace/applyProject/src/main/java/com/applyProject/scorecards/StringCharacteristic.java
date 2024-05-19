@@ -36,6 +36,7 @@ public class StringCharacteristic extends BaseCharacteristic {
 	public StringCharacteristic(String name, String characteristicValue, Scorecard scorecard, Integer bandingScore) {
 		super(name);
 		this.characteristicValue = characteristicValue;
+		this.bandingScore = bandingScore;
 		
 		//Add to the Array of Characteristics in the scorecard, to keep them related 
 		scorecard.addCharacteristic(this);
