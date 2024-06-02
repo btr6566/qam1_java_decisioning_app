@@ -5,6 +5,7 @@ import java.util.Random;
 
 import com.applyProject.programData.Applicant;
 import com.applyProject.programData.AzureJDBC;
+import com.applyProject.enums.StrategyPath;
 import com.applyProject.programData.AppData;
 import com.applyProject.programData.DecisioningDataRow;
 import com.applyProject.programData.UserInput;
@@ -268,6 +269,22 @@ public class Main {
 		challangerSc.calculateProbofDefault();
 		
 		////////////////////////////////////////////////
+		// Offer
+		////////////////////////////////////////////////
+		
+		Offers offer = new Offers();
+		
+		//Use the Path from the App Data Model to decide which scorecard. Index boundaries could be different
+		if (caseData.getStrategyPath() == StrategyPath.CHAMPION) {
+			offer.setMaxOffer(championSc.getIndex());			
+		} else if (caseData.getStrategyPath() == StrategyPath.CHALLANGER) {
+			offer.setMaxOffer(challangerSc.getIndex());			
+		}
+		
+		
+		caseData.setOffer(offer);
+		
+		////////////////////////////////////////////////
 		// Policy
 		////////////////////////////////////////////////
 		
@@ -294,17 +311,6 @@ public class Main {
 		a_001.ruleOutcome(caseData);
 		caseData.addFlag(a_001);
 		
-		////////////////////////////////////////////////
-		// Offer
-		////////////////////////////////////////////////
-		
-		Offers offer = new Offers();
-		if (a) {
-			
-		}
-		offer.setMaxOffer(randomid);
-		
-		
 		
 		////////////////////////////////////////////////
 		// Shutdown
@@ -321,10 +327,7 @@ public class Main {
 		// Console Log for testing
 		////////////////////////////////////////////////
 		System.out.println(gson.toJson(caseData));
-//		System.out.println(gson.toJson(appl1));
-//		System.out.println(gson.toJson(decData));
-//		System.out.println(gson.toJson(championSc));
-//		System.out.println(gson.toJson(challangerSc));
+
 	}
 	
 	

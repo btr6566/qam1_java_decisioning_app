@@ -27,18 +27,23 @@ public class Offers {
 		switch (index) {
 		case 1: {
 			this.maxOffer = 3000;
+			break;
 		}
 		case 2: {
 			this.maxOffer = 2000;
+			break;
 		}
 		case 3: {
 			this.maxOffer = 1000;
+			break;
 		}
 		case 4: {
 			this.maxOffer = 0;
+			break;
 		}
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + index);
+			
 		}
 		
 	}
