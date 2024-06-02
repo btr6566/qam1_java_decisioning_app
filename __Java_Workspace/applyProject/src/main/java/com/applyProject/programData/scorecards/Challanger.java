@@ -12,11 +12,12 @@ public class Challanger {
 		
 		Integer index = null;
 		
+		//Index 4 will also trigger the D_003 Decline Rule
 		if (score > 700) {
 			index = 1;
 		} else if (score >= 640 && score <= 700) {
 			index = 2;
-		} else if (score >= 560 && score <= 640) {
+		} else if (score >= 580 && score <= 640) {
 			index = 3;
 		} else {
 			index = 4;

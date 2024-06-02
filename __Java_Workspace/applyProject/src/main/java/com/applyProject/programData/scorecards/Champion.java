@@ -12,13 +12,14 @@ public class Champion {
 	
 	public static Integer calcIndex(int score) {
 		
+		//Index 4 will also trigger the D_003 Decline Rule
 		Integer index = null;
 		
 		if (score > 700) {
 			index = 1;
 		} else if (score >= 640 && score <= 700) {
 			index = 2;
-		} else if (score >= 560 && score <= 640) {
+		} else if (score >= 600 && score <= 640) {
 			index = 3;
 		} else {
 			index = 4;

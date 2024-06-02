@@ -300,7 +300,7 @@ public class Main {
 		d_002.ruleOutcome(caseData);
 		caseData.addFlag(d_002);
 		
-		// Scorecard Decline
+		// Scorecard Decline (and by extension Max Offer = 0)
 		D_003 d_003 = new D_003();
 		d_003.ruleOutcome(caseData);
 		caseData.addFlag(d_003);
