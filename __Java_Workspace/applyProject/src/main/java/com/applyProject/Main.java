@@ -2,17 +2,22 @@ package com.applyProject;
 
 import java.util.Random;
 
-import com.applyProject.policy.*;
+
 import com.applyProject.programData.Applicant;
 import com.applyProject.programData.AzureJDBC;
 import com.applyProject.programData.AppData;
 import com.applyProject.programData.DecisioningDataRow;
 import com.applyProject.programData.UserInput;
-import com.applyProject.scorecards.Challanger;
-import com.applyProject.scorecards.Champion;
-import com.applyProject.scorecards.NumericCharacteristic;
-import com.applyProject.scorecards.Scorecard;
-import com.applyProject.scorecards.StringCharacteristic;
+import com.applyProject.programData.offers.Offers;
+import com.applyProject.programData.policy.A_001;
+import com.applyProject.programData.policy.D_001;
+import com.applyProject.programData.policy.D_002;
+import com.applyProject.programData.policy.D_003;
+import com.applyProject.programData.scorecards.Challanger;
+import com.applyProject.programData.scorecards.Champion;
+import com.applyProject.programData.scorecards.NumericCharacteristic;
+import com.applyProject.programData.scorecards.Scorecard;
+import com.applyProject.programData.scorecards.StringCharacteristic;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -160,9 +165,7 @@ public class Main {
 					decData.getE1B07()
 					,championSc
 					,Champion.e1b07_score(decData.getE1B07())
-					);
-//		championE1B07.setBandingScore(Champion.champion_E1B07_score(championE1B07.getCharacteristicValue()));
-		
+					);		
 		
 		NumericCharacteristic championE1B09 = new NumericCharacteristic(
 				"E1B09",
@@ -170,8 +173,7 @@ public class Main {
 				,championSc
 				,Champion.e1b09_score(decData.getE1B09())
 				);
-//		championE1B09.setBandingScore(Champion.champion_E1B09_score(championE1B09.getCharacteristicValue()));
-		
+	
 		
 		NumericCharacteristic championTRDA13 = new NumericCharacteristic(
 				"TRD-A-13"
@@ -179,8 +181,7 @@ public class Main {
 				,championSc
 				,Champion.trda13_score(decData.getTRD_A_13())
 				);
-//		championTRDA13.setBandingScore(Champion.champion_TRDA13_score(championTRDA13.getCharacteristicValue()));
-		
+	
 		
 		NumericCharacteristic championE1A09 = new NumericCharacteristic(
 				"E1A09"
@@ -188,7 +189,6 @@ public class Main {
 				,championSc
 				,Champion.e1a09_score(decData.getE1A09())
 				);
-//		championE1A09.setBandingScore(Champion.champion_E1A09_score(championE1A09.getCharacteristicValue()));
 		
 		NumericCharacteristic championTRDSTL14 = new NumericCharacteristic(
 				"TRDSTL14"
@@ -196,7 +196,6 @@ public class Main {
 				,championSc
 				,Champion.e1a09_score(decData.getTRD_STL_14())
 				);
-//		championTRDSTL14.setBandingScore(Champion.champion_E1A09_score(championTRDSTL14.getCharacteristicValue()));
 		
 		
 		//The eNum ones require using toString to be compatible, Room for improvement
@@ -206,9 +205,9 @@ public class Main {
 				,championSc
 				,Champion.residentialStatus_score(appl1.getResidentialStatus().toString())
 				);
-//		championResStatus.setBandingScore(Champion.champion_ResidentialStatus_score(championResStatus.getCharacteristicValue()));
 		
-		
+		//Calculate Index and PD
+		championSc.setIndex(Champion.calcIndex(championSc.getScore()));
 		championSc.calculateProbofDefault();
 		
 		//-------------
@@ -225,17 +224,14 @@ public class Main {
 				,decData.getNDSPCII()
 				,challangerSc
 				,Challanger.ndspcii_score(decData.getNDSPCII())
-				);
-//		challangerNDSPCII.setBandingScore(Challanger.challanger_NDSPCII_score(challangerNDSPCII.getCharacteristicValue()));
-		
+				);	
 		
 		NumericCharacteristic challangerTRDA06 = new NumericCharacteristic(
 				"TRD-A-06"
 				,decData.getTRD_A_06()
 				,challangerSc
 				,Challanger.trda06_score(decData.getTRD_A_06())
-				);
-//		challangerTRDA06.setBandingScore(Challanger.challanger_TRD_A_06_score(challangerTRDA06.getCharacteristicValue()));
+				);//		challangerTRDA06.setBandingScore(Challanger.challanger_TRD_A_06_score(challangerTRDA06.getCharacteristicValue()));
 		
 		NumericCharacteristic challangerE1B13 = new NumericCharacteristic(
 				"E1B13"
@@ -243,8 +239,7 @@ public class Main {
 				,challangerSc
 				,Challanger.e1b13_score(decData.getE1B13())
 				);
-//		challangerE1B13.setBandingScore(Challanger.challanger_E1B13_score(challangerE1B13.getCharacteristicValue()));
-		
+
 		
 		NumericCharacteristic challangerE1B01 = new NumericCharacteristic(
 				"E1B01"
@@ -267,6 +262,9 @@ public class Main {
 				,Challanger.employmentStatus_score(appl1.getEmploymentStatus().toString())
 				);
 		
+		
+		//Calculate Index and PD
+		challangerSc.setIndex(Challanger.calcIndex(challangerSc.getScore()));
 		challangerSc.calculateProbofDefault();
 		
 		////////////////////////////////////////////////
@@ -290,13 +288,23 @@ public class Main {
 		d_003.ruleOutcome(caseData);
 		caseData.addFlag(d_003);
 		
-		//Existing Customer (Northwind) Policy
-		
 		
 		//Accept
 		A_001 a_001 = new A_001();
 		a_001.ruleOutcome(caseData);
 		caseData.addFlag(a_001);
+		
+		////////////////////////////////////////////////
+		// Offer
+		////////////////////////////////////////////////
+		
+		Offers offer = new Offers();
+		if (a) {
+			
+		}
+		offer.setMaxOffer(randomid);
+		
+		
 		
 		////////////////////////////////////////////////
 		// Shutdown

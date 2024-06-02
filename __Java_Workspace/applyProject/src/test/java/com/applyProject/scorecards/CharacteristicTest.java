@@ -7,6 +7,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
+import com.applyProject.programData.scorecards.StringCharacteristic;
+
 
 @DisplayName("Characteristic classes")
 class CharacteristicTest {

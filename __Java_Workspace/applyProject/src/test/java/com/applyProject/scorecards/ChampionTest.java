@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import com.applyProject.programData.scorecards.Champion;
+
 //import com.applyProject.data.ResidentialStatus;
 
 

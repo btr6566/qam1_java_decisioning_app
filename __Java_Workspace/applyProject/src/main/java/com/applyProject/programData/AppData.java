@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.applyProject.enums.StrategyPath;
-import com.applyProject.policy.PolicyRule;
-import com.applyProject.scorecards.Scorecard;
+import com.applyProject.programData.offers.Offers;
+import com.applyProject.programData.policy.PolicyRule;
+import com.applyProject.programData.scorecards.Scorecard;
 
 public class AppData {
 	
@@ -20,6 +21,8 @@ public class AppData {
 	
 	protected Integer scorecardRngResult;
 	protected StrategyPath strategyPath;
+	
+	protected Offers offer;
 	
 	protected ArrayList<Scorecard> scorecards;
 	
@@ -104,4 +107,13 @@ public class AppData {
 		return flags;
 	}
 
+	public Offers getOffer() {
+		return offer;
+	}
+
+	public void setOffer(Offers offer) {
+		this.offer = offer;
+	}
+
+	
 }

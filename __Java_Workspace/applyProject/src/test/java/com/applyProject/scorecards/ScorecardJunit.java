@@ -9,6 +9,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
+import com.applyProject.programData.scorecards.NumericCharacteristic;
+import com.applyProject.programData.scorecards.Scorecard;
+import com.applyProject.programData.scorecards.StringCharacteristic;
 //import com.applyProject.scorecards.Scorecard;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

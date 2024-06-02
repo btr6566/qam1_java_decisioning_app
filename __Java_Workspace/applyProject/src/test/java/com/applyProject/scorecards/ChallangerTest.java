@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import com.applyProject.enums.EmploymentStatus;
+import com.applyProject.programData.scorecards.Challanger;
 
 class ChallangerTest {
 

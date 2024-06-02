@@ -1,9 +1,8 @@
-package com.applyProject.policy;
+package com.applyProject.programData.policy;
 
 import com.applyProject.enums.*;
 import com.applyProject.programData.AppData;
-//import com.applyProject.programData.DecisioningDataRow;
-import com.applyProject.scorecards.Scorecard;
+import com.applyProject.programData.scorecards.Scorecard;
 
 public final class D_003 extends PolicyRule {
 

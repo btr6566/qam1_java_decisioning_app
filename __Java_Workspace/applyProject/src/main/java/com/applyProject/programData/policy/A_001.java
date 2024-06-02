@@ -1,4 +1,4 @@
-package com.applyProject.policy;
+package com.applyProject.programData.policy;
 
 import com.applyProject.enums.*;
 import com.applyProject.programData.AppData;
