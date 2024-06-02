@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 //import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 
 ////////////////////////
 // Class Define
@@ -293,5 +296,41 @@ public class AzureJDBC {
 		
 		return vResult;
 	}
+	
+	////////////////////////
+	// WRITE
+	///////////////////////
 
+	public void logCaseData(AppData data) {
+		
+		//Convert the Object into a JSON via the GSON libary
+		GsonBuilder builder = new GsonBuilder(); 
+		Gson gson = builder.create();
+		
+		String jsonData = gson.toJson(data);
+		
+		
+		//Could replace this with a Stored Procedure within the SQL DB
+		String query = "INSERT INTO dbo.JavaDecisioningHistory(caseData) VALUES(?)";
+		
+		try (
+				Connection conn = DriverManager.getConnection(jdbcConnectionURL, username, password);
+				PreparedStatement statement = conn.prepareStatement(query);
+            ) {
+			
+			
+			statement.setString(1, jsonData);
+			
+			statement.executeUpdate();
+		
+            
+        } catch (SQLException e) {
+            System.out.println("ERROR: " + e.getMessage());
+            System.out.println("Stack Trace = " + e.getStackTrace());
+        } 
+		
+		
+	}
+	
+	
 }

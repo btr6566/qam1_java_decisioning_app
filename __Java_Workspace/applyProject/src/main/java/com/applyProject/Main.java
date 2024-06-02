@@ -322,6 +322,8 @@ public class Main {
 		System.gc();
 		
 		
+		//Write the Data Model to the Database for history
+		db.logCaseData(caseData);
 		
 		////////////////////////////////////////////////
 		// Console Log for testing
