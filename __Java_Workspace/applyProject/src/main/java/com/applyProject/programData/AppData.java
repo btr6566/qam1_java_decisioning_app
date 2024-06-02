@@ -3,6 +3,7 @@ package com.applyProject.programData;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.applyProject.enums.Decision;
 import com.applyProject.enums.StrategyPath;
 import com.applyProject.programData.offers.Offers;
 import com.applyProject.programData.policy.PolicyRule;
@@ -21,6 +22,7 @@ public class AppData {
 	
 	protected Integer scorecardRngResult;
 	protected StrategyPath strategyPath;
+	protected Decision finalDecision;
 	
 	protected Offers offer;
 	
@@ -114,6 +116,16 @@ public class AppData {
 	public void setOffer(Offers offer) {
 		this.offer = offer;
 	}
+
+	public Decision getFinalDecision() {
+		return finalDecision;
+	}
+
+	public void setFinalDecision(Decision finalDecision) {
+		this.finalDecision = finalDecision;
+	}
+	
+	
 
 	
 }

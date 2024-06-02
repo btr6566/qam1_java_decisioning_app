@@ -1,10 +1,13 @@
 package com.applyProject;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 
 import com.applyProject.programData.Applicant;
 import com.applyProject.programData.AzureJDBC;
+import com.applyProject.enums.Decision;
+import com.applyProject.enums.Results;
 import com.applyProject.enums.StrategyPath;
 import com.applyProject.programData.AppData;
 import com.applyProject.programData.DecisioningDataRow;
@@ -14,6 +17,8 @@ import com.applyProject.programData.policy.A_001;
 import com.applyProject.programData.policy.D_001;
 import com.applyProject.programData.policy.D_002;
 import com.applyProject.programData.policy.D_003;
+import com.applyProject.programData.policy.D_004;
+import com.applyProject.programData.policy.PolicyRule;
 import com.applyProject.programData.scorecards.Challanger;
 import com.applyProject.programData.scorecards.Champion;
 import com.applyProject.programData.scorecards.NumericCharacteristic;
@@ -289,6 +294,11 @@ public class Main {
 		////////////////////////////////////////////////
 		
 		//Not happy with these 3 lines to run rules & add Outcomes...
+		/*
+		 * Idea was that each rule has it's own implementation of ruleOutcome
+		 * 
+		 * Didn't want to use an Interface, as a class can define properties
+		 */
 		
 		// E1B08 Policy
 		D_001 d_001 = new D_001();
@@ -305,11 +315,46 @@ public class Main {
 		d_003.ruleOutcome(caseData);
 		caseData.addFlag(d_003);
 		
+		//Unemployed
+		D_004 d_004 = new D_004();
+		d_004.ruleOutcome(caseData);
+		caseData.addFlag(d_004);
+		
+		
 		
 		//Accept
 		A_001 a_001 = new A_001();
 		a_001.ruleOutcome(caseData);
 		caseData.addFlag(a_001);
+
+		
+		
+		//Set final Decision based on policy
+		int declineCount = 0;
+		
+		for (PolicyRule flags : caseData.getFlags()) {
+			
+			
+			System.out.printf("Rule: %s, Type: %s, Outcome: %s\n"
+					, flags.getPolicyCode()
+					, flags.getDecisionType()
+					, flags.getRuleOutcome()
+				);
+			
+			if(flags.getDecisionType() == Decision.DECLINE && flags.getRuleOutcome() == Results.FAIL) {
+				declineCount++;
+				
+			}			
+		}
+		
+		if (declineCount == 0) {
+			caseData.setFinalDecision(Decision.ACCEPT);
+		} else {
+			caseData.setFinalDecision(Decision.DECLINE);			
+		}
+		
+		System.out.printf("Final Decision Reason = %s\n",caseData.getFinalDecision());
+	
 		
 		
 		////////////////////////////////////////////////
