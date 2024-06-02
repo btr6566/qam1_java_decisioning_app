@@ -9,7 +9,7 @@ This program:
 - Runs a few Credit Policy Rules in addition to the Scorecards
 - Returns a final Decision and Max Offer (if applicable) to the Console output
 
-An Azure TSQL Database is used to stpre data referenced by the application, with a series of views used to make this data available to the Java Program.
+An Azure TSQL Database is used to store data referenced by the application, with a series of views used to make this data available to the Java Program.
 
 Developed as part of Level 4 Software Developer Apprenticeship program (provided by QA Apprenticeships).
 
