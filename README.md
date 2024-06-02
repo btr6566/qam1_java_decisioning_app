@@ -1,6 +1,17 @@
-# QA_Apply_Project_1
+# Java Decisioning App
 
-GitHub Repo for tracking work for the Module 1 Apply project
+A simple Java program decisions to demonstate how to use Java & Object Oriented Programming to build Credit Decisioning Logic.
+
+This program:
+- Prompts user input from the Command Line via the Java Scanner Class
+- Connects to a database to retrive data to use
+- Implements 2 Credit Risk Scorecards in a Champion/Challanger approach
+- Runs a few Credit Policy Rules in addition to the Scorecards
+- Returns a final Decision and Max Offer (if applicable) to the Console output
+
+An Azure TSQL Database is used to stpre data referenced by the application, with a series of views used to make this data available to the Java Program.
+
+Developed as part of Level 4 Software Developer Apprenticeship program (provided by QA Apprenticeships).
 
 ## Required Learning Outcomes
 
