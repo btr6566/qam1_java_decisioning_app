@@ -25,6 +25,16 @@ public class SetUp {
 			
 			try {
 				appConfig.load(new FileInputStream(appConfigPath));
+				
+				
+				//Read the Properties into Static Variables
+				jdbcUser = appConfig.getProperty("jdbcUser");
+				jdbcPwd = appConfig.getProperty("jdbcPwd");
+				
+				minId = Integer.parseInt(appConfig.getProperty("minId"));
+				maxId = Integer.parseInt(appConfig.getProperty("maxId"));
+				
+				
 			} catch (FileNotFoundException e) {
 				e.getMessage();
 				e.printStackTrace();
@@ -39,12 +49,6 @@ public class SetUp {
 				System.exit(1);
 			}
 			
-			//Read the Properties into Static Variables
-			jdbcUser = appConfig.getProperty("jdbcUser");
-			jdbcPwd = appConfig.getProperty("jdbcPwd");
-			
-			minId = Integer.parseInt(appConfig.getProperty("minId"));
-			maxId = Integer.parseInt(appConfig.getProperty("maxId"));
 			
 	
 	}

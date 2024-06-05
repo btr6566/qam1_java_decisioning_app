@@ -142,11 +142,12 @@ public class Scorecard {
 	public void calculateProbofDefault() {
 		
 //		Constants to set boundary for Bad Rates
-		int baselineScore = 600;
-		int pointsJump = 20;
+		int baselineScore = 500;
+		int pointsJump = 50;
 		
 //		'=1/(2^((Score-500)/50)+1)
-		double pd = 1 / (Math.exp((score-baselineScore)/pointsJump)+1);
+		double pd = 1 / (Math.exp((this.score-baselineScore)/pointsJump)+1);
+//		double pd = 1 / (2^((this.score-baselineScore)/pointsJump)+1);
 		
 		System.out.printf("Score = %d, Prob of Default = %f \n",this.score,pd);
 		
@@ -163,6 +164,7 @@ public class Scorecard {
 		
 //		'=1/(2^((Score-500)/50)+1)
 		double pd = 1 / (Math.exp((pScore-baselineScore)/pointsJump)+1);
+//		double pd = 1 / (2^((pScore-baselineScore)/pointsJump)+1);
 		
 		System.out.printf("Score = %d, Prob of Default = %f \n",pScore,pd);
 		
