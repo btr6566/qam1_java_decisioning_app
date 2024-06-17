@@ -136,8 +136,8 @@ class ScorecardJunit {
 		sc1.calculateProbofDefault(750);
 		
 		//This is initial problem run into, so check no infinete values to start
-//		assertNotEquals(Double.POSITIVE_INFINITY, sc1.getProbOfDefault());
-//		assertNotEquals(Double.NEGATIVE_INFINITY, sc1.getProbOfDefault());
+		assertNotEquals(Double.POSITIVE_INFINITY, sc1.getProbOfDefault());
+		assertNotEquals(Double.NEGATIVE_INFINITY, sc1.getProbOfDefault());
 		
 		
 		assertEquals(0.02, round2dp(sc1.getProbOfDefault()));

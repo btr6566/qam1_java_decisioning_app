@@ -6,9 +6,9 @@ Must be using:
 
 */
 
-
 --Clean up
 DROP USER jdbc_integration_user;
+GO
 DROP LOGIN jdbc_integration_user;
 GO
 
@@ -19,12 +19,9 @@ WITH
 ;
 GO
 
-
-
-
 --User is Seperate
--- CREATE USER jdbc_integration_user FROM LOGIN jdbc_integration_user;
--- GO 
+CREATE USER jdbc_integration_user FROM LOGIN jdbc_integration_user;
+GO 
 
 -----------
 -- Permissions
@@ -34,8 +31,18 @@ GO
 -- EXEC sp_addrolemember 'db_datareader', 'jdbc_integration_user'
 -- GO
 
+-- EXEC sp_droprolemember 'db_datareader', 'jdbc_integration_user'
+-- GO
+
+--Give my Integration user SELECT access to necessary vies for the program
+GRANT SELECT ON Delphi.VW_DelphiSummaryData TO jdbc_integration_user;
+GRANT SELECT ON Delphi.VW_DelphiPremiumValueData TO jdbc_integration_user;
+GO
 
 
+--Give my Integration user Write Access
+GRANT INSERT ON dbo.JavaDecisioningHistory TO jdbc_integration_user;
+GO
 
 --==============
 -- Look at DB Admin views
