@@ -24,6 +24,7 @@ import com.applyProject.programData.scorecards.Champion;
 import com.applyProject.programData.scorecards.NumericCharacteristic;
 import com.applyProject.programData.scorecards.Scorecard;
 import com.applyProject.programData.scorecards.StringCharacteristic;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

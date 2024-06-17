@@ -120,12 +120,13 @@ class ScorecardJunit {
 	
 	@Test
 	@Timeout(10) 
-	@DisplayName("Add Numeric Characteristic")
+	@DisplayName("Probibliity of Default = actual value")
 	void calculateProbofDefault() {
 		
-		Scorecard sc1 = new Scorecard("Test 1 score = 530",500);
+		Scorecard sc1 = new Scorecard("Test 1 score = 530",530);
 //		Scorecard sc2 = new Scorecard("Test 1 score = 610",610);
-		
+
+		//Try a range of values, refer to console log
 		sc1.calculateProbofDefault(400);
 		sc1.calculateProbofDefault(450);
 		sc1.calculateProbofDefault(500);
@@ -139,8 +140,14 @@ class ScorecardJunit {
 		assertNotEquals(Double.POSITIVE_INFINITY, sc1.getProbOfDefault());
 		assertNotEquals(Double.NEGATIVE_INFINITY, sc1.getProbOfDefault());
 		
+		// Do a round to simplify the Unit Test
+		double testRaw = sc1.getProbOfDefault();
+		double test = round2dp(sc1.getProbOfDefault());
 		
-		assertEquals(0.02, round2dp(sc1.getProbOfDefault()));
+		System.out.printf("current pd (not rounded) = %f\n",testRaw);
+		System.out.printf("current pd = %f",test);
+		
+		assertEquals(0.02, test);
 //		assertEquals(0.27, round2dp(sc2.getProbOfDefault()));
 		
 	}
